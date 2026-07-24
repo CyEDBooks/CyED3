@@ -74,7 +74,8 @@ textarea {
 
 a,
 .content a,
-.bd-content a {
+.bd-content a,
+article.content a {
   color: var(--cyed-link);
   text-decoration-color: color-mix(in srgb, var(--cyed-teal) 65%, transparent);
   text-decoration-thickness: 0.09em;
@@ -83,7 +84,8 @@ a,
 
 a:hover,
 .content a:hover,
-.bd-content a:hover {
+.bd-content a:hover,
+article.content a:hover {
   color: var(--cyed-navy);
   text-decoration-color: var(--cyed-orange);
 }
@@ -94,19 +96,23 @@ a:hover,
  */
 .logo,
 .navbar-brand,
-.logo__link {
+.logo__link,
+.myst-home-link,
+.myst-home-link-logo {
   background: var(--icesi-white);
 }
 
 .logo__image,
-.navbar-brand img {
+.navbar-brand img,
+.myst-home-link-logo img {
   min-width: 48px;
   max-height: 4.25rem;
   padding: 0.45rem 0.6rem;
   object-fit: contain;
 }
 
-.logo__title {
+.logo__title,
+.myst-home-link > span {
   color: var(--cyed-navy);
   font-weight: 700;
   letter-spacing: -0.015em;
@@ -114,14 +120,16 @@ a:hover,
 
 /* Primary navigation follows the bookTemplate layout with a CyED3 treatment. */
 .bd-header,
-.navbar {
+.navbar,
+.myst-top-nav {
   background: var(--cyed-surface);
   border-bottom: 4px solid var(--cyed-teal);
   box-shadow: 0 2px 12px rgb(2 48 71 / 8%);
 }
 
 .bd-sidebar-primary,
-.sidebar-primary {
+.sidebar-primary,
+.myst-primary-sidebar-pointer {
   background:
     linear-gradient(180deg, rgb(142 202 230 / 24%), transparent 13rem),
     var(--cyed-surface-soft);
@@ -129,20 +137,25 @@ a:hover,
 }
 
 .bd-sidebar-secondary,
-.sidebar-secondary {
+.sidebar-secondary,
+article.content > [class~="lg:col-margin-right"] {
   border-left: 1px solid var(--cyed-border);
 }
 
 .bd-sidebar-primary a,
 .sidebar-primary a,
-.toc-entry a {
+.toc-entry a,
+.myst-primary-sidebar a,
+.myst-primary-sidebar .myst-toc-item {
   color: var(--cyed-navy);
   border-radius: 0.35rem;
 }
 
 .bd-sidebar-primary a:hover,
 .sidebar-primary a:hover,
-.toc-entry a:hover {
+.toc-entry a:hover,
+.myst-primary-sidebar a:hover,
+.myst-primary-sidebar .myst-toc-item:hover {
   color: var(--cyed-navy);
   background: rgb(142 202 230 / 38%);
 }
@@ -150,7 +163,10 @@ a:hover,
 .bd-sidebar-primary .current > a,
 .sidebar-primary .current > a,
 .toc-entry .active,
-.toc-entry a.active {
+.toc-entry a.active,
+.myst-primary-sidebar .active,
+.myst-primary-sidebar .myst-toc-item.active,
+.myst-primary-sidebar [aria-current="page"] {
   color: var(--cyed-navy);
   background: rgb(33 158 188 / 16%);
   box-shadow: inset 4px 0 0 var(--cyed-teal);
@@ -188,6 +204,7 @@ a:hover,
   }
 
   article.article-grid {
+    padding-left: 0.65cm;
     grid-template-columns:
       [screen-start] 0.25rem
       [screen-inset-start] 1fr
@@ -235,18 +252,24 @@ a:hover,
 }
 
 .bd-content,
-main {
+main,
+article.content {
   line-height: 1.7;
 }
 
 .bd-article,
-.content {
+.content:not(article) {
   max-width: 58rem;
+}
+
+article.content {
+  max-width: none;
 }
 
 /* Title treatment adapted from bookTemplate, without duplicating the logo. */
 .bd-content h1,
-main h1 {
+main h1,
+article.content h1 {
   color: var(--cyed-navy);
   margin-bottom: 1.5rem;
   padding-bottom: 0.65rem;
@@ -257,7 +280,8 @@ main h1 {
 }
 
 .bd-content h1::after,
-main h1::after {
+main h1::after,
+article.content h1::after {
   content: "";
   display: block;
   width: 7.5rem;
@@ -273,7 +297,8 @@ main h1::after {
 }
 
 .bd-content h2,
-main h2 {
+main h2,
+article.content h2 {
   color: var(--cyed-navy);
   margin-top: 2.2rem;
   font-weight: 750;
@@ -281,7 +306,8 @@ main h2 {
 }
 
 .bd-content h2::before,
-main h2::before {
+main h2::before,
+article.content h2::before {
   content: "";
   display: inline-block;
   width: 0.32rem;
@@ -293,14 +319,16 @@ main h2::before {
 }
 
 .bd-content h3,
-main h3 {
+main h3,
+article.content h3 {
   color: var(--cyed-teal-dark);
   margin-top: 1.7rem;
   font-weight: 700;
 }
 
 .bd-content h4,
-main h4 {
+main h4,
+article.content h4 {
   color: var(--cyed-navy);
   font-weight: 700;
 }
@@ -329,20 +357,25 @@ table {
   width: 100%;
   margin: 1.25rem 0 1.75rem;
   overflow: hidden;
+  color: var(--cyed-ink);
+  background: var(--cyed-surface);
   border: 1px solid var(--cyed-border);
   border-collapse: separate;
   border-spacing: 0;
   border-radius: 0.65rem;
 }
 
-thead {
+thead,
+table tr:first-child > th {
   color: var(--icesi-white);
   background: var(--cyed-navy);
+  font-weight: 700;
 }
 
 th,
 td {
   padding: 0.72rem 0.85rem;
+  border-color: var(--cyed-border);
   border-right: 1px solid var(--cyed-border);
   border-bottom: 1px solid var(--cyed-border);
   text-align: left;
@@ -354,7 +387,7 @@ td:last-child {
   border-right: 0;
 }
 
-tbody tr:last-child td {
+tbody tr:last-child > * {
   border-bottom: 0;
 }
 
@@ -362,13 +395,23 @@ tbody tr:nth-child(even) {
   background: var(--cyed-surface-soft);
 }
 
+tbody tr:nth-child(odd):not(:first-child) {
+  background: var(--cyed-surface);
+}
+
 tbody tr:hover {
   background: rgb(142 202 230 / 22%);
 }
 
+table code {
+  color: var(--cyed-link);
+  font-weight: 600;
+}
+
 /* Admonitions use the course palette while retaining high-contrast text. */
 .admonition,
-div.admonition {
+div.admonition,
+.myst-admonition {
   overflow: hidden;
   border: 1px solid var(--cyed-border);
   border-left: 6px solid var(--cyed-teal);
@@ -377,7 +420,8 @@ div.admonition {
 }
 
 .admonition-title,
-div.admonition > .admonition-title {
+div.admonition > .admonition-title,
+.myst-admonition-header {
   color: var(--cyed-navy);
   background: var(--cyed-surface-teal);
   font-weight: 700;
@@ -386,19 +430,24 @@ div.admonition > .admonition-title {
 .admonition.warning,
 div.admonition.warning,
 .admonition.caution,
-div.admonition.caution {
+div.admonition.caution,
+.myst-admonition-warning,
+.myst-admonition-caution {
   border-left-color: var(--cyed-orange);
 }
 
 .admonition.warning > .admonition-title,
 div.admonition.warning > .admonition-title,
 .admonition.caution > .admonition-title,
-div.admonition.caution > .admonition-title {
+div.admonition.caution > .admonition-title,
+.myst-admonition-warning > .myst-admonition-header,
+.myst-admonition-caution > .myst-admonition-header {
   background: var(--cyed-surface-yellow);
 }
 
 .admonition.important,
-div.admonition.important {
+div.admonition.important,
+.myst-admonition-important {
   border-left-color: var(--cyed-yellow);
 }
 
@@ -482,13 +531,15 @@ button.primary:hover {
   border-color: var(--cyed-yellow);
 }
 
-.prev-next-area a {
+.prev-next-area a,
+.myst-footer-link {
   color: var(--cyed-navy);
   border-color: var(--cyed-border);
   border-radius: 0.6rem;
 }
 
-.prev-next-area a:hover {
+.prev-next-area a:hover,
+.myst-footer-link:hover {
   background: var(--cyed-surface-teal);
   border-color: var(--cyed-teal);
 }
@@ -506,80 +557,114 @@ input[type="checkbox"] {
   border-radius: 0.7rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cyed-link: #8ecae6;
-    --cyed-ink: #eaf7fc;
-    --cyed-muted: #b9d4df;
-    --cyed-border: #27566a;
-    --cyed-surface: #021f2e;
-    --cyed-surface-soft: #062a3c;
-    --cyed-surface-teal: #073b4f;
-    --cyed-surface-yellow: #493b08;
-    --cyed-code-bg: #011a27;
-    color-scheme: dark;
-  }
+/* book-theme records the active appearance on the root element. */
+html.dark {
+  --cyed-link: #8ecae6;
+  --cyed-ink: #eaf7fc;
+  --cyed-muted: #b9d4df;
+  --cyed-border: #27566a;
+  --cyed-surface: #021f2e;
+  --cyed-surface-soft: #062a3c;
+  --cyed-surface-teal: #073b4f;
+  --cyed-surface-yellow: #493b08;
+  --cyed-code-bg: #011a27;
+  color-scheme: dark;
+}
 
-  body,
-  .bd-header,
-  .navbar,
-  .bd-sidebar-primary,
-  .sidebar-primary {
-    color: var(--cyed-ink);
-    background-color: var(--cyed-surface);
-  }
+html.dark body,
+html.dark .bd-header,
+html.dark .navbar,
+html.dark .myst-top-nav,
+html.dark .bd-sidebar-primary,
+html.dark .sidebar-primary,
+html.dark .myst-primary-sidebar-pointer {
+  color: var(--cyed-ink);
+  background-color: var(--cyed-surface);
+}
 
-  .bd-sidebar-primary,
-  .sidebar-primary {
-    background:
-      linear-gradient(180deg, rgb(33 158 188 / 14%), transparent 13rem),
-      var(--cyed-surface-soft);
-  }
+html.dark .bd-sidebar-primary,
+html.dark .sidebar-primary,
+html.dark .myst-primary-sidebar-pointer {
+  background:
+    linear-gradient(180deg, rgb(33 158 188 / 14%), transparent 13rem),
+    var(--cyed-surface-soft);
+}
 
-  .logo__title,
-  .bd-sidebar-primary a,
-  .sidebar-primary a,
-  .toc-entry a,
-  .bd-content h1,
-  main h1,
-  .bd-content h2,
-  main h2,
-  .bd-content h4,
-  main h4,
-  strong {
-    color: var(--cyed-ink);
-  }
+html.dark .logo__title,
+html.dark .myst-home-link > span,
+html.dark .bd-sidebar-primary a,
+html.dark .sidebar-primary a,
+html.dark .toc-entry a,
+html.dark .myst-primary-sidebar a,
+html.dark .myst-primary-sidebar .myst-toc-item,
+html.dark .bd-content h1,
+html.dark main h1,
+html.dark article.content h1,
+html.dark .bd-content h2,
+html.dark main h2,
+html.dark article.content h2,
+html.dark .bd-content h4,
+html.dark main h4,
+html.dark article.content h4,
+html.dark strong {
+  color: var(--cyed-ink);
+}
 
-  .bd-content h3,
-  main h3 {
-    color: var(--cyed-sky);
-  }
+html.dark .bd-content h3,
+html.dark main h3,
+html.dark article.content h3 {
+  color: var(--cyed-sky);
+}
 
-  /* The negative logo treatment is white on institutional Icesi blue. */
-  .logo,
-  .navbar-brand,
-  .logo__link {
-    background: var(--icesi-brand-blue);
-  }
+/* The negative logo treatment is white on institutional Icesi blue. */
+html.dark .logo,
+html.dark .navbar-brand,
+html.dark .logo__link,
+html.dark .myst-home-link,
+html.dark .myst-home-link-logo {
+  background: var(--icesi-brand-blue);
+}
 
-  thead {
-    color: var(--cyed-navy);
-    background: var(--cyed-sky);
-  }
+html.dark table {
+  color: var(--cyed-ink);
+  background: var(--cyed-surface);
+  border-color: var(--cyed-border);
+  box-shadow: 0 5px 18px rgb(0 0 0 / 22%);
+}
 
-  tbody tr:nth-child(even) {
-    background: var(--cyed-surface-soft);
-  }
+html.dark thead,
+html.dark table tr:first-child > th {
+  color: var(--cyed-navy);
+  background: var(--cyed-sky);
+  border-color: var(--cyed-teal-dark);
+}
 
-  code {
-    color: var(--cyed-sky);
-    background: rgb(33 158 188 / 18%);
-  }
+html.dark th,
+html.dark td {
+  color: var(--cyed-ink);
+  border-color: var(--cyed-border);
+}
 
-  pre code,
-  .highlight code {
-    background: transparent;
-  }
+html.dark tbody tr:nth-child(even) {
+  background: var(--cyed-surface-soft);
+}
+
+html.dark tbody tr:nth-child(odd):not(:first-child) {
+  background: var(--cyed-surface);
+}
+
+html.dark tbody tr:hover {
+  background: rgb(33 158 188 / 28%);
+}
+
+html.dark code {
+  color: var(--cyed-sky);
+  background: rgb(33 158 188 / 18%);
+}
+
+html.dark pre code,
+html.dark .highlight code {
+  background: transparent;
 }
 
 @media (max-width: 720px) {
@@ -588,8 +673,42 @@ input[type="checkbox"] {
   }
 
   .logo__image,
-  .navbar-brand img {
+  .navbar-brand img,
+  .myst-home-link-logo img {
     max-height: 3.5rem;
+  }
+
+  .myst-top-nav {
+    padding-right: 0.65rem;
+    padding-left: 0.65rem;
+  }
+
+  .myst-top-nav-bar > div:first-child,
+  .myst-home-link {
+    min-width: 0;
+  }
+
+  .myst-top-nav-bar > div:first-child {
+    flex-shrink: 1;
+    margin-right: 0.35rem;
+  }
+
+  .myst-home-link {
+    margin-left: 0.25rem;
+  }
+
+  .myst-home-link-logo {
+    flex: 0 0 auto;
+    margin-right: 0.25rem;
+  }
+
+  .myst-home-link > span {
+    display: block;
+    max-width: 30vw;
+    overflow: hidden;
+    font-size: 0.88rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .bd-content h1,
@@ -601,6 +720,23 @@ input[type="checkbox"] {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+  }
+}
+
+/* Below the desktop breakpoint, the same sidebar becomes the slide-out menu. */
+@media (max-width: 1279px) {
+  .myst-primary-sidebar {
+    background:
+      linear-gradient(180deg, rgb(142 202 230 / 24%), transparent 13rem),
+      var(--cyed-surface-soft);
+    border-right: 1px solid var(--cyed-border);
+    box-shadow: 6px 0 22px rgb(2 48 71 / 16%);
+  }
+
+  html.dark .myst-primary-sidebar {
+    background:
+      linear-gradient(180deg, rgb(33 158 188 / 14%), transparent 13rem),
+      var(--cyed-surface-soft);
   }
 }
 

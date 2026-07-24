@@ -1,3 +1,7 @@
+# Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+# Licensed under the PolyForm Noncommercial License 1.0.0.
+# Commercial use is prohibited without prior written authorization.
+
 # This file was created automatically with `jupyter-book init --gh-pages`
 # Ensure your GitHub Pages settings are set to deploy with GitHub Actions.
 
@@ -56,9 +60,6 @@ jobs:
           if [ -f requirements.txt ]; then
             python -m pip install -r requirements.txt
           fi
-
-      - name: Install Jupyter Book via npm
-        run: npm install -g jupyter-book
 
       - name: Build HTML assets
         run: jupyter-book build --html --strict
