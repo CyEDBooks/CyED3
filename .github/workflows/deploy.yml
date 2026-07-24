@@ -64,6 +64,29 @@ jobs:
       - name: Build HTML assets
         run: jupyter-book build --html --strict
 
+      # The static exporter uses the stable name `myst-theme.css`. Fingerprint
+      # that file so browsers cannot reuse an older copy after a deployment.
+      - name: Fingerprint and verify the custom theme
+        shell: bash
+        run: |
+          theme_source="_build/html/myst-theme.css"
+          grep -Fq 'html.dark table' "$theme_source"
+          grep -Fq 'html.dark table tr:first-child > th' "$theme_source"
+
+          theme_hash="$(sha256sum "$theme_source" | cut -c1-12)"
+          theme_name="myst-theme-${theme_hash}.css"
+          cp "$theme_source" "_build/html/${theme_name}"
+
+          find _build/html -type f -name '*.html' \
+            -exec perl -pi -e "s/myst-theme\\.css/${theme_name}/g" {} +
+
+          if grep -R -Fq 'myst-theme.css' _build/html --include='*.html'; then
+            echo 'The static HTML still references the non-fingerprinted theme.' >&2
+            exit 1
+          fi
+
+          grep -R -Fq "$theme_name" _build/html --include='*.html'
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:
