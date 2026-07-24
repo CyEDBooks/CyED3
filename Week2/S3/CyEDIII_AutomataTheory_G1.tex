@@ -1,0 +1,551 @@
+% Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+% Licensed under the PolyForm Noncommercial License 1.0.0.
+% Commercial use is prohibited without prior written authorization.
+%===============================================================================
+% LaTeX  Diapositivas ComputaciÛn y Estructuras Discretas III 2023-2 ICESI
+% AndréÈs A. Aristiz·bal P. - ¡ngela P. Villota G.
+%===============================================================================
+%===============================================================================
+\documentclass[compress,xcolor={dvipsnames}]{beamer}
+\mode<presentation> {
+%============================================================================== 
+\usetheme{Boadilla}
+%\usetheme{Copenhagen}
+%\usetheme{CambridgeUS}
+%============================================================================== 
+%\usecolortheme{crane}
+%\usecolortheme{seahorse}
+%============================================================================== 
+%\usecolortheme{crane}
+\usecolortheme{whale}
+%============================================================================== 
+\usefonttheme[onlylarge]{structurebold}
+
+%==============================================================================
+%==============================================================================
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+%\setbeamercolor{structure}{fg=black!80!white,bg=white}
+%\setbeamercolor{palette quaternary}{fg=white!80!gray,bg=red!50!black}}
+
+\setbeamercolor{structure}{fg=white,fg=blue!60!black}  %%%%Estaba en 70
+\setbeamercolor{palette quaternary}{fg=gray!40!black,bg=gray!20!white}}
+
+
+%=============================================================================== 
+%========================================================================================
+\usepackage[spanish,activeacute]{babel}
+\usepackage[applemac]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{indentfirst}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{newlfont}
+\usepackage{exscale}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+\usepackage{amscd}
+\usepackage{pb-diagram}
+%\usepackage{pstricks}
+\usepackage{makeidx}
+\usepackage{textpos}
+
+%==============================================================================
+%==============================================================================
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+%============================================================================== 
+%=======================================================================================
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposition}
+\newtheorem{afir}{Afirmación}
+\newtheorem{obs}{Observación}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ej}{Example}
+\newtheorem{ejer}{Exercise}
+\newtheorem{ejers}{Exercises}
+\newtheorem{ejs}{Examples}
+\newtheorem{df}{Definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Flechas
+\newcommand{\stateequiv}{\,\sim\,}
+\newcommand{\entonces}{\,\rightarrow\,}
+\newcommand{\pertenece}{\,\in \,}
+\newcommand{\talque}{\,| \,}
+\newcommand{\sii}{\,\leftrightarrow\,}
+\newcommand{\ra}{\,\rightarrow\,}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\Ra}{\;\Longrightarrow\;}
+\newcommand{\lora}{\longrightarrow}
+\newcommand{\we}{\,\wedge\,}
+\newcommand{\ve}{\,\vee \,}
+\newcommand{\bbsq}{\blacksquare\!\blacksquare}
+\newcommand{\powerset}{\raisebox{.15\baselineskip}{\Large\ensuremath{\wp}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Símbolos lógicos
+\newcommand{\mo}{\models}
+\newcommand{\lan}{\langle}
+\newcommand{\ran}{\rangle}
+\newcommand{\ap}{\approx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Letras
+\newcommand{\vep}{\varepsilon}
+\newcommand{\vph}{\varphi}
+\newcommand{\de}{\delta}
+\newcommand{\si}{\sigma}
+\newcommand{\Si}{\Sigma}
+\newcommand{\om}{\omega}
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\vom}{\varOmega}
+\newcommand{\vTh}{\varTheta}
+\newcommand{\vth}{\vartheta}
+\newcommand{\vDe}{\varDelta}
+\newcommand{\wh}{\widehat}
+\newcommand{\nn}{\~n}
+\newcommand{\m}{i}
+\newcommand{\ps}{P_{\Sigma}}
+\newcommand{\psone}{P_{\Sigma^{*}}}
+\newcommand{\psoneast}{P_{\Sigma'}}
+\newcommand{\ts}{T_{\Sigma}}
+\newcommand{\dis}{\displaystyle}
+\newenvironment{variableblock}[3]{%
+  \setbeamercolor{block body}{#2}
+  \setbeamercolor{block title}{#3}
+  \begin{block}{#1}}{\end{block}}
+  
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+  
+  \lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%============================================================================== 
+%==========================================================================================
+
+\title{Computaci\'on y Estructuras Discretas III}
+
+\author[Andrés A. Aristizábal P.]{Andrés A. Aristizábal P. aaaristizabal@icesi.edu.co \\  Angela Villota - apvillota@icesi.edu.co}
+
+\institute[Universidad ICESI]{Departamento de Computaci\'on y Sistemas Inteligentes \\
+\includegraphics[height=1.5cm]{../logoICESI2.pdf}}
+
+\date[]{\today}
+
+%==============================================================================
+\AtBeginSubsection[]{
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Agenda del día}
+    \tableofcontents[currentsubsection, 
+    hideothersubsections, 
+    sectionstyle=show/shaded, 
+    subsectionstyle=show/shaded,]
+  \end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%============================================================================== CUERPO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\setlength{\parindent}{0cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+ %   \titlepage
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Agenda del día}
+  \tableofcontents
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\footnotesize}
+
+\section[Regular languages and Automata theory]{Regular languages and Automata theory}
+
+\subsection{Deterministic Automata}
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+What is a finite automaton? \pause
+\begin{block}{}
+A finite automaton is an abstract machines that process input \textbf{strings}, which are either accepted or rejected. \pause
+\begin{center}
+\includegraphics[width=8cm]{../AFD} 
+\end{center}
+\end{block}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+How does a finite automaton work? \pause
+\begin{block}{}
+The automaton operates by reading the symbols written on a semi-infinite tape divided into cells, onto which an input string $u$ is written, one symbol per cell. \pause
+\end{block}
+What are the components of a finite automaton? \pause
+\begin{block}{}
+The automaton has a control unit or reading head, which has a finite number of internal configurations, called states. \pause There are some states of particular importance: these are the initial state and the final or accepting states.
+\end{block}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+What is the formal definition of a finite automaton? \pause
+\begin{df}
+A finite automaton $M$ is defined as a 5-tuple, such that $M =(\Sigma,Q,q_0,F,\delta)$. \pause
+\begin{enumerate}
+\item An alphabet $\Sigma$, called the tape alphabet. All strings processed by $M$ belong to $\Sigma^*$. \pause
+\item $Q={q_0,q_1,...,q_n}$, the set of internal states of the automaton. \pause
+\item$q_0 \in Q$, the initial state. \pause
+\item $F \subseteq Q$, the set of final or accepting states. $F \neq \emptyset$. \pause
+\item The transition function of the automaton:
+\begin{center}
+\begin{tabular}{rcc}
+$\delta \, : \, Q \times \Sigma$ & $\longrightarrow$ & Q \\
+$(q,s)$ & $\longmapsto$ & $\delta(q,s)$
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{df}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+How does a finite automaton start working? \pause
+\begin{block}{}
+An input string $u$ is placed on the tape in such a way that the first symbol of $u$ occupies the first cell of the tape. The reading head is initially in the initial state $q_0$. \pause
+\begin{center}
+\includegraphics[width=9cm]{../AFD1a} 
+\end{center}
+\end{block}
+\end{frame}}
+
+{\scriptsize \begin{frame}{Regular languages and Automata theory}
+How does a finite automaton transition from state to state? \pause
+\begin{block}{}
+The transition function $\delta$ indicates the state to which the finite control moves, depending on the scanned symbol and its current state. \pause So $\delta(q,s)=q'$, which indicates that when symbol $s$ is encountered, the reading head moves from state $q$ to $q'$, shifting to the right on the tape. \pause This is one computational step. \pause
+\begin{center}
+\includegraphics[width=9cm]{../AFD2a} \pause 
+\end{center}
+Since the transition function $\delta$ is defined for every state-symbol combination, an input string is processed entirely until the control unit encounters the empty string.
+\end{block}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+\begin{ej}
+Let's consider the automaton defined by the following $5$ components:
+\begin{tabular}{l}
+$\Sigma = {a,b}$ \\
+$Q = {q_0,q_1,q_2}$ \\
+$q_0$ : initial state. \\
+$F={q_0,q_2}$, accepting states. \\
+Transition function $\delta:$ \pause
+\end{tabular}
+\begin{center}
+\includegraphics[width=9cm]{../AFD3a}
+\end{center}
+\end{ej}
+\end{frame}}
+
+{\scriptsize \begin{frame}{Regular languages and Automata theory}
+\begin{ej}
+We illustrate the processing of two input strings. \pause
+\begin{enumerate}
+\item $u=aabab$ \pause
+\begin{center}
+\includegraphics[width=6cm]{../AFD4a} \pause
+\end{center}
+Since $q_2$ is an accepting state, the input string $u$ is accepted. \pause
+\item $v=aababa$ \pause
+\begin{center}
+\includegraphics[width=6cm]{../AFD5a} \pause
+\end{center}
+Since $q_1$ is not an accepting state, the string $v$ is rejected.
+\end{enumerate}
+\end{ej}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+How do we call these previously defined automata? \pause
+\begin{block}{}
+They are called Deterministic Finite Automata (DFA) because for each state $q$ and for each symbol $a \in \Sigma$, the transition function $\delta(q,a)$ is always defined. \pause
+\end{block}
+How do we call the language accepted by a finite automaton? \pause
+\begin{block}{}
+Let $M$ be an automaton, the language accepted by this automaton is denoted as $L(M)$, and it is defined as follows: \pause
+\begin{center}
+$L(M) := \{u \in \Sigma^* \mid M$ terminates processing the input string $u$ in a state $q \in F \}$.
+\end{center}
+\end{block}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+What is a transition diagram of an automaton? \pause
+\begin{block}{}
+It is a directed and labeled graph that represents the finite automaton. \pause
+\end{block}
+How is the transition diagram of an automaton obtained? \pause
+\begin{block}{}
+\begin{tabular}{l}
+\includegraphics[width=6cm]{../paso1} \\ \pause
+\includegraphics[width=6cm]{../paso2} \\ \pause
+\includegraphics[width=6cm]{../paso3} \\ \pause
+\includegraphics[width=6cm]{../paso4} \\ \pause
+\includegraphics[width=6cm]{../paso5}
+\end{tabular}
+\end{block}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+\begin{ej}
+\begin{center}
+\includegraphics[width=7cm]{../AFD6}
+\end{center}
+\end{ej}
+\end{frame}}
+%%%%%%%%%%%%%
+
+\subsection{Exercises}
+
+\subsection{Non-deterministic Automatons}
+{\scriptsize \begin{frame}{Regular languages and Automata theory}
+What is a non-deterministic finite automaton? \pause
+\begin{block}{}
+The non-deterministic finite automata resemble deterministic finite automata, except that for each state $q \in Q$ and each $a \in \Sigma,$ the transition $\delta(q,a)$ can consist of more than one state or may not be defined. \pause
+\end{block}
+How would we formally define a non-determinist finite automaton? \pause
+\begin{block}{}
+An NFA is defined by $M=(\Sigma,Q,q_0,F,\Delta)$ where: \pause
+\begin{enumerate}
+\item $\Sigma$ is the tape alphabet. 
+\item $Q$ is the (finite) set of internal states.
+\item $q_0 \pertenece Q$ is the initial state. 
+\item $\emptyset \neq F \subseteq Q$ is the set of final or accepting states.
+\item Let $\powerset(Q)$ be the set of subsets of $Q,$ 
+\begin{center}
+\begin{tabular}{rcl}
+$\Delta \, : \, Q \times \Sigma$ & $\longrightarrow$ & $\powerset(Q)$ \\
+$(q,s)$ & $\mapsto$ & $\Delta(q,s) = \{q_{i1},q_{i2},...,q_{ik}\}$
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{block}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+What is the meaning $\Delta(q,s) = \{q_{i1},q_{i2},...,q_{ik}\}$? \pause
+\begin{block}{}
+Being in state $q$, upon encountering symbol $s$, it can randomly transition to any of the states $q_{i1}, q_{i2}, ..., q_{ik}$ and moves to the right. \pause
+\end{block}
+What if $\Delta(q,s)=\emptyset$? \pause
+\begin{block}{}
+This means that if, during the processing of an input string $u$, $M$ enters state $q$ while reading symbol $s$ on the tape, the computation is aborted. 
+\begin{center}
+\includegraphics[width=5cm]{../AFN1} 
+\end{center}
+\end{block}
+\end{frame}}
+
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+How do we represent an NFA by means of a transition diagram? \pause
+\begin{block}{}
+It is represented similarly to a DFA, the difference lies in the fact that from the same node (state), it may happen that two or more arcs with the same label emerge. 
+\begin{center}
+\includegraphics[width=4cm]{../AFN2} 
+\end{center}
+\end{block}
+\end{frame}}
+
+
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+How does an FNA process an input string? \pause
+\begin{block}{}
+An NFA can process an input string $u \in \Sigma^*$ in different ways. Seen in the transition diagram, this means that there can be various paths from the initial state, labeled with the symbols of $u$.
+\end{block}
+\end{frame}}
+
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+What is the notion of acceptance for nondeterministic finite automata? \pause
+\begin{block}{}
+\begin{center}
+\begin{tabular}{lll}
+$L(M)$ & $=$ & language accepted or recognized by $M$ \\
+& $=$ & $\{u \in \Sigma \mid$ there exists at least one complete computation \\
+& & of $u$ that ends in a state $q \in F\}$
+\end{tabular}
+\end{center} 
+For a string $u$ to be accepted, there must exist some computation in which $u$ is processed completely and ends with $M$ in an accepting state.
+\end{block}
+\end{frame}}
+
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+\begin{ej}
+Let $M$ be the following NFA: 
+\begin{center}
+\includegraphics[width=7cm]{../AFN3} 
+\end{center}
+For the string $u = abb$, there are computations that lead to rejection, aborted computations, and computations that end in accepting states.
+\end{ej}
+\end{frame}}
+
+{\tiny\begin{frame}{Regular languages and Automata theory}
+\begin{ej}
+According to the definition of accepted language, $u \in L(M)$, we have: \pause
+\begin{center}
+\begin{tabular}{l}
+\includegraphics[width=5.3cm]{../AFN4} \\ \pause
+\includegraphics[width=5.3cm]{../AFN5} \\ \pause
+\includegraphics[width=5.3cm]{../AFN6} \\ \pause
+\includegraphics[width=5.3cm]{../AFN7}
+\end{tabular}
+\end{center}
+\end{ej}
+\end{frame}}
+%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+Are DFAs and NFAs computationally equivalent? \pause
+\begin{block}{}
+The DFAs and NFAs are computationally equivalent. \pause It can be seen that a DFA $M=(\Sigma,Q,q_0,F,\delta)$ can be considered as an NFA $M'= (\Sigma,Q,q_0,F,\Delta)$ by defining $\Delta(q,a)={\delta(q,a)}$ for each $q \in Q$ and each $a \in \Sigma$ \pause
+\end{block}
+For the converse of this implication, we have the following theorem: \pause
+\begin{teo}
+Given an NFA $M=(\Sigma,Q,q_0,F,\Delta)$, we can construct an equivalent DFA $M'$ to $M$, meaning that $L(M) = L(M')$
+\end{teo}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+What is a nondeterministic finite automaton with $\lambda$ transitions? \pause
+\begin{block}{}
+It is a nondeterministic automaton $M=(\Sigma,Q,q_0,F,\Delta)$ where the transition function is defined as $\Delta \, : \, Q \times (\Sigma \cup \{\lambda\}) \rightarrow \powerset(Q).$ \pause
+\end{block}
+What is a $\lambda$ transiton? \pause
+\begin{block}{}
+The $\lambda$ transition, $\Delta(q,\lambda)=\{p_{i_1},...,p_{i_n}\}$, also called null or spontaneous transition, allows transitioning between states without processing any symbol read on the tape. \pause
+\end{block}
+How do we represent lambda transitions in a transition diagram? \pause
+\begin{block}{}
+In a transition diagram, these transitions result in arcs labeled with $\lambda$.
+\end{block}
+\end{frame}}
+
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+When is an input $w$ accepted by an NFA-$\lambda$? \pause
+\begin{block}{}
+A string $w$ is accepted by an NFA-$\lambda$ if there exists at least one path from the initial state $q_0$ to an accepting state, whose labels consist exactly of the symbols of $w$, interspersed with zero or more $\lambda$s.\pause
+\end{block}
+\begin{ej}
+Let $M$ be the following NFA-$\lambda$: \pause
+\begin{center}
+\includegraphics[width=3cm]{../AFNL1a} 
+\end{center}
+\end{ej}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Regular languages and Automata theory}
+\begin{ej}
+The acceptance computation for $u=aab$ is: \pause
+\begin{center}
+\includegraphics[width=4cm]{../AFNL2a} \pause
+\end{center}
+The acceptance computation for $v=abaa$ is: \pause
+\begin{center}
+\includegraphics[width=4cm]{../AFNL3a}
+\end{center}
+\end{ej}
+\end{frame}}
+
+{\scriptsize\begin{frame}{Regular languages and Automata theory}
+What advantages does an NFA-$\lambda$ have? \pause
+\begin{block}{}
+It allows even more freedom in the design of automata, especially when there are numerous concatenations. \pause
+\end{block}
+\begin{ej}
+Let $M$ be the following DFA that accepts the language $a^*b^*c^*$ over $\Sigma=\{a,b,c\}$: \pause
+\begin{center}
+\includegraphics[width=3cm]{../AFD1} \pause
+\end{center}
+$M'$ is an NFA-$\lambda$ that accepts $L:$ \pause
+\begin{center}
+\includegraphics[width=3cm]{../AFNL4a} 
+\end{center}
+\end{ej}
+\end{frame}}
+
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+\begin{ej}
+Let $M_1$ be the following DFA that accepts the language of all strings with an even number of 'a's over $\Sigma=\{a,b\}$: \pause
+\begin{center}
+\includegraphics[width=2cm]{../AFD2} \pause
+\end{center}
+And let $M_2$ be the following DFA that accepts the language of all strings with an even number of 'b's over $\Sigma=\{a,b\}$: \pause
+\begin{center}
+\includegraphics[width=2cm]{../AFD3} 
+\end{center}
+\end{ej}
+\end{frame}}
+
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+\begin{ej}
+$M_3$ is the following NFA-$\lambda$ that accepts the language of all strings with an even number of 'a's or an even number of 'b's over $\Sigma=\{a,b\}:$ \pause
+\begin{center}
+\includegraphics[width=4cm]{../AFNL5a} 
+\end{center}
+\end{ej}
+\end{frame}}
+
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+Can infinite loops occur in an NFA-$\lambda$? \pause
+\begin{block}{}
+Unlike DFAs and NFAs, in NFAs-$\lambda$, there can be computations that never terminate. This can happen if the automaton enters a state from which there are multiple chained $\lambda$ transitions that return to the same state. \pause
+\begin{center}
+\includegraphics[width=5cm]{../AFNL6a} 
+\end{center}
+\end{block}
+\end{frame}}
+%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Regular languages and Automata theory}
+Are NFAs and NFAs-$\lambda$ computationally equivalent? \pause
+\begin{block}{}
+NFA-$\lambda$ are computationally equivalent to NFAs. In other words, $\lambda$ transitions can be eliminated by adding transitions that simulate them, without altering the accepted language. \pause \\
+An NFA $M=(\Sigma,Q,q_0,F,\Delta)$ can be considered as an NFA-$\lambda$ where there are simply zero $\lambda$ transitions. \pause
+\end{block}
+For the converse of this implication, we have the following theorem: \pause
+\begin{teo}
+Given an NFA-$\lambda$ $M=(\Sigma,Q,q_0,F,\Delta)$, we can construct an equivalent NFA $M'$ to $M$, meaning that $L(M) = L(M')$.
+\end{teo}
+\end{frame}}
+
+
+\subsection{Exercises}
+
+\end{document}
+
+

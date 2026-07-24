@@ -1,0 +1,172 @@
+% Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+% Licensed under the PolyForm Noncommercial License 1.0.0.
+% Commercial use is prohibited without prior written authorization.
+\documentclass[10pt]{article}
+
+\usepackage[applemac]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage[centerlast,small,sc]{caption}
+\usepackage[usenames]{color}
+\usepackage[table]{xcolor}
+\usepackage{multicol}
+\usepackage[parfill]{parskip}
+\usepackage{comment}
+\usepackage{soul}
+\usepackage{wrapfig}
+\usepackage{eurosym}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lipsum}
+\usepackage[margin=2.5cm,headheight=26pt,includeheadfoot]{geometry}
+
+
+
+\textheight=23.5cm
+\textwidth=16.5cm
+\hoffset=0cm
+\voffset=-0.5cm
+
+\setlength{\captionmargin}{60pt}
+%\renewcommand{\solutiontitle}{\noindent\textbf{Soluci贸n:}\par\noindent}
+\newtheorem{ejer}{Exercise}
+\newtheorem{sol}{Solution}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Flechas
+\newcommand{\stateequiv}{\,\sim\,}
+\newcommand{\entonces}{\,\rightarrow\,}
+\newcommand{\pertenece}{\,\in \,}
+\newcommand{\talque}{\,| \,}
+\newcommand{\sii}{\,\leftrightarrow\,}
+\newcommand{\ra}{\,\rightarrow\,}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\Ra}{\;\Longrightarrow\;}
+\newcommand{\lora}{\longrightarrow}
+\newcommand{\we}{\,\wedge\,}
+\newcommand{\ve}{\,\vee \,}
+\newcommand{\bbsq}{\blacksquare\!\blacksquare}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%S抦bolos l梘icos
+\newcommand{\mo}{\models}
+\newcommand{\lan}{\langle}
+\newcommand{\ran}{\rangle}
+\newcommand{\ap}{\approx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Letras
+\newcommand{\vep}{\varepsilon}
+\newcommand{\vph}{\varphi}
+\newcommand{\de}{\delta}
+\newcommand{\si}{\sigma}
+\newcommand{\Si}{\Sigma}
+\newcommand{\om}{\omega}
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\vom}{\varOmega}
+\newcommand{\vTh}{\varTheta}
+\newcommand{\vth}{\vartheta}
+\newcommand{\vDe}{\varDelta}
+\newcommand{\wh}{\widehat}
+\newcommand{\nn}{\~n}
+\newcommand{\m}{i}
+\newcommand{\ps}{P_{\Sigma}}
+\newcommand{\psone}{P_{\Sigma^{*}}}
+\newcommand{\psoneast}{P_{\Sigma'}}
+\newcommand{\ts}{T_{\Sigma}}
+\newcommand{\dis}{\displaystyle}
+\newcommand{\course}{Matem噒ica Discreta}
+\newcommand{\subject}{Parcial 1}
+\newcommand{\dt}{Septiembre 21 de 2017}
+
+
+
+%\rhead{\includegraphics[height=1.7cm]{logoICESInuevo}}
+%\setlength\headheight{26pt}
+
+%\fancyhf{}
+%\fancyhead[L]{\includegraphics[height=1.7cm\textwidth,height=1.7cm]{logoICESInuevo}}
+%
+%\setlength{\headheight}{1.7cm}
+%\pagestyle{fancy}
+
+\title{Exercises Session 1}
+
+\author{Universidad Icesi}
+% Header
+%\pagestyle{headandfoot}
+%\firstpagefootrule
+%\firstpagefooter{\bf{Intr. a la Programaci贸n}}{\bf{Primer
+%    Examen}}{\bf{Febrero 16 del 2013}}
+%\runningheadrule
+%\runningfootrule
+%\runningfooter{\bf{Intr. a la Programaci贸n}}{\bf{Primer Examen, p谩gina
+%    \thepage\ de \numpages}}{\bf{Febrero 16 del 2013}}
+
+%\printanswers
+%\checkboxchar{$\Box$}
+%\decimalpoint
+
+\begin{document}
+%{\large
+%\makebox[\textwidth]{Nombre: \enspace \hrulefill}
+%
+%\makebox[\textwidth]{C贸digo: \enspace \hrulefill}
+%}
+%\vspace{0.3cm}
+
+\maketitle
+
+\section{{Regular languages and automata theory}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{ejer}
+Given $\Sigma = \{a,b,c, d\}$ define $\Sigma^*$
+\end{ejer}
+
+
+\begin{ejer}
+Given $u \pertenece \Sigma^*$ and $n \pertenece \mathbb{N},$ give a recursive definition for $u^n.$
+\end{ejer}
+
+
+\begin{ejer}
+Given $u \pertenece \Sigma^*$ and $a \pertenece \Sigma$ give a recursive definition for $|u|.$
+\end{ejer}
+
+
+\begin{ejer}
+Given $u \pertenece \Sigma^*$ and $a \pertenece \Sigma$ give a recursive definiton for $u^R.$
+\end{ejer}
+
+
+\begin{ejer}
+If $u,v \pertenece \Sigma^*,$ show that $(u v)^R = v^R u^R.$ 
+\end{ejer}
+
+
+\begin{ejer}
+Given an example of an alphabet $\Sigma$ and two different languages $A, B$ over $\Sigma$ such that $AB = BA.$
+\end{ejer}
+
+\begin{ejer}
+Show that $A \cdot (B \cdot C) = (A \cdot B) \cdot C.$
+\end{ejer}
+
+
+\begin{ejer}
+Show that $A \cdot \{\lambda\} = \{\lambda\} \cdot A = A.$
+\end{ejer}
+
+
+\begin{ejer}
+Show that $A \cdot \emptyset = \emptyset \cdot A = \emptyset.$
+\end{ejer}
+
+
+
+
+
+
+\end{document}

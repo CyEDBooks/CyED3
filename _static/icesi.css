@@ -1,12 +1,49 @@
+/*
+ * Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+ * Licensed under the PolyForm Noncommercial License 1.0.0.
+ * Commercial use is prohibited without prior written authorization.
+ */
+
+/* Icesi's primary typeface, with the brand-approved Arial fallback. */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap");
+
 :root {
-  --icesi-blue: #5555ea;
-  --icesi-blue-dark: #3535b8;
-  --icesi-blue-soft: #ededff;
-  --icesi-ink: #1f2433;
-  --icesi-muted: #5f6473;
-  --icesi-border: #d9dced;
-  --icesi-surface: #ffffff;
-  --icesi-surface-alt: #f7f8fc;
+  /* Institutional identity: reserved for the official logo treatment. */
+  --icesi-brand-blue: #5454e9;
+  --icesi-white: #ffffff;
+
+  /* CyED3 content palette. */
+  --cyed-sky: #8ecae6;
+  --cyed-teal: #219ebc;
+  --cyed-navy: #023047;
+  --cyed-yellow: #ffb703;
+  --cyed-orange: #fb8500;
+
+  /* Derived interface colors. */
+  --cyed-link: #075f73;
+  --cyed-teal-dark: #0b7189;
+  --cyed-orange-dark: #a94700;
+  --cyed-ink: #023047;
+  --cyed-muted: #49636f;
+  --cyed-border: #b9d8e5;
+  --cyed-surface: #ffffff;
+  --cyed-surface-soft: #f2f9fc;
+  --cyed-surface-teal: #e5f5f9;
+  --cyed-surface-yellow: #fff8df;
+  --cyed-code-bg: #f4f8fa;
+  --cyed-focus: #fb8500;
+
+  /* Desktop book-frame spacing requested for the three-column layout. */
+  --cyed-sidebar-gutter: 2.5cm;
+  --cyed-sidebar-edge-shift: 0.45cm;
+
+  --pst-color-primary: var(--cyed-teal);
+  --pst-color-link: var(--cyed-link);
+  --pst-color-link-hover: var(--cyed-navy);
+  --pst-color-info: var(--cyed-teal);
+  --pst-color-warning: var(--cyed-orange);
+
+  color-scheme: light;
 }
 
 html {
@@ -14,124 +51,570 @@ html {
 }
 
 body {
-  color: var(--icesi-ink);
-  background: var(--icesi-surface);
+  color: var(--cyed-ink);
+  background: var(--cyed-surface);
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Accessible keyboard focus, using the course orange as a non-text accent. */
+:focus-visible {
+  outline: 3px solid var(--cyed-focus);
+  outline-offset: 3px;
 }
 
 a,
-.content a {
-  color: var(--icesi-blue-dark);
+.content a,
+.bd-content a {
+  color: var(--cyed-link);
+  text-decoration-color: color-mix(in srgb, var(--cyed-teal) 65%, transparent);
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.16em;
 }
 
 a:hover,
-.content a:hover {
-  color: var(--icesi-blue);
+.content a:hover,
+.bd-content a:hover {
+  color: var(--cyed-navy);
+  text-decoration-color: var(--cyed-orange);
 }
 
-.logo__image {
-  max-height: 3.25rem;
+/*
+ * Brand lockup: the positive logo remains on white, is never recolored with the
+ * course palette, and stays above the 48 px digital minimum from the 2026 guide.
+ */
+.logo,
+.navbar-brand,
+.logo__link {
+  background: var(--icesi-white);
+}
+
+.logo__image,
+.navbar-brand img {
+  min-width: 48px;
+  max-height: 4.25rem;
+  padding: 0.45rem 0.6rem;
   object-fit: contain;
 }
 
 .logo__title {
-  color: var(--icesi-ink);
+  color: var(--cyed-navy);
   font-weight: 700;
-  letter-spacing: 0;
+  letter-spacing: -0.015em;
+}
+
+/* Primary navigation follows the bookTemplate layout with a CyED3 treatment. */
+.bd-header,
+.navbar {
+  background: var(--cyed-surface);
+  border-bottom: 4px solid var(--cyed-teal);
+  box-shadow: 0 2px 12px rgb(2 48 71 / 8%);
 }
 
 .bd-sidebar-primary,
 .sidebar-primary {
-  border-right: 1px solid var(--icesi-border);
-  background: var(--icesi-surface-alt);
+  background:
+    linear-gradient(180deg, rgb(142 202 230 / 24%), transparent 13rem),
+    var(--cyed-surface-soft);
+  border-right: 1px solid var(--cyed-border);
+}
+
+.bd-sidebar-secondary,
+.sidebar-secondary {
+  border-left: 1px solid var(--cyed-border);
+}
+
+.bd-sidebar-primary a,
+.sidebar-primary a,
+.toc-entry a {
+  color: var(--cyed-navy);
+  border-radius: 0.35rem;
+}
+
+.bd-sidebar-primary a:hover,
+.sidebar-primary a:hover,
+.toc-entry a:hover {
+  color: var(--cyed-navy);
+  background: rgb(142 202 230 / 38%);
 }
 
 .bd-sidebar-primary .current > a,
 .sidebar-primary .current > a,
 .toc-entry .active,
 .toc-entry a.active {
-  color: var(--icesi-blue-dark);
+  color: var(--cyed-navy);
+  background: rgb(33 158 188 / 16%);
+  box-shadow: inset 4px 0 0 var(--cyed-teal);
   font-weight: 700;
 }
 
-.bd-sidebar-primary a:hover,
-.sidebar-primary a:hover {
-  color: var(--icesi-blue);
+/*
+ * book-theme uses two aligned article grids: the outer grid positions the
+ * fixed navigation and the inner grid positions the article and outline.
+ * At desktop widths, long navigation labels can otherwise overflow the outer
+ * grid into the article. Keep the navigation inside its track, move it closer
+ * to the page edge, and add a physical 2.5 cm gutter before article content.
+ */
+@media (min-width: 1280px) {
+  .myst-primary-sidebar-pointer {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    transform: translateX(calc(-1 * var(--cyed-sidebar-edge-shift)));
+  }
+
+  .myst-primary-sidebar-nav,
+  .myst-primary-sidebar-toc,
+  .myst-primary-sidebar-item,
+  .myst-primary-sidebar-item-content {
+    min-width: 0;
+  }
+
+  .myst-primary-sidebar-item-title,
+  .myst-primary-sidebar-item-link,
+  .myst-primary-sidebar-item-short,
+  .myst-toc-item {
+    overflow-wrap: anywhere;
+  }
+
+  article.article-grid {
+    grid-template-columns:
+      [screen-start] 0.25rem
+      [screen-inset-start] 1fr
+      [page-start] 3rem
+      [page-inset-start] minmax(4rem, 9rem)
+      [body-outset-start] calc(3rem + var(--cyed-sidebar-gutter))
+      [body-start gutter-left-start] 1rem
+      [body-inset-start] minmax(8ch, 10ch)
+      [middle-start] minmax(8ch, 10ch)
+      [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch)
+      [gutter-right-start] minmax(8ch, 10ch)
+      [middle-end] minmax(8ch, 10ch)
+      [body-inset-end] 1rem
+      [body-end gutter-right-end] 3rem
+      [body-outset-end] minmax(5rem, 13rem)
+      [page-inset-end] 3rem
+      [page-end] 1fr
+      [screen-inset-end] 0.25rem
+      [screen-end];
+  }
 }
 
-.bd-header,
-.navbar {
-  border-bottom: 3px solid var(--icesi-blue);
+@media (min-width: 1536px) {
+  article.article-grid {
+    grid-template-columns:
+      [screen-start] 0.5rem
+      [screen-inset-start] 1fr
+      [page-start] 3rem
+      [page-inset-start] minmax(4rem, 9rem)
+      [body-outset-start] calc(3rem + var(--cyed-sidebar-gutter))
+      [body-start gutter-left-start] 1rem
+      [body-inset-start] minmax(8ch, 10ch)
+      [middle-start] minmax(8ch, 10ch)
+      [gutter-left-end] minmax(8ch, 10ch) minmax(8ch, 10ch)
+      [gutter-right-start] minmax(8ch, 10ch)
+      [middle-end] minmax(8ch, 10ch)
+      [body-inset-end] 1rem
+      [body-end gutter-right-end] 3rem
+      [body-outset-end] minmax(5rem, 13rem)
+      [page-inset-end] 3rem
+      [page-end] 1fr
+      [screen-inset-end] 0.5rem
+      [screen-end];
+  }
 }
 
 .bd-content,
 main {
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
+.bd-article,
+.content {
+  max-width: 58rem;
+}
+
+/* Title treatment adapted from bookTemplate, without duplicating the logo. */
 .bd-content h1,
 main h1 {
-  color: var(--icesi-ink);
-  border-bottom: 4px solid var(--icesi-blue);
-  padding-bottom: 0.35rem;
+  color: var(--cyed-navy);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 5px solid var(--cyed-teal);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.bd-content h1::after,
+main h1::after {
+  content: "";
+  display: block;
+  width: 7.5rem;
+  height: 0.35rem;
+  margin-top: 0.65rem;
+  margin-bottom: -1rem;
+  background: linear-gradient(
+    90deg,
+    var(--cyed-yellow) 0 55%,
+    var(--cyed-orange) 55% 100%
+  );
+  border-radius: 999px;
 }
 
 .bd-content h2,
-.bd-content h3,
-main h2,
-main h3 {
-  color: var(--icesi-ink);
+main h2 {
+  color: var(--cyed-navy);
+  margin-top: 2.2rem;
+  font-weight: 750;
+  letter-spacing: -0.025em;
 }
 
+.bd-content h2::before,
+main h2::before {
+  content: "";
+  display: inline-block;
+  width: 0.32rem;
+  height: 1.05em;
+  margin-right: 0.55rem;
+  vertical-align: -0.1em;
+  background: var(--cyed-teal);
+  border-radius: 999px;
+}
+
+.bd-content h3,
+main h3 {
+  color: var(--cyed-teal-dark);
+  margin-top: 1.7rem;
+  font-weight: 700;
+}
+
+.bd-content h4,
+main h4 {
+  color: var(--cyed-navy);
+  font-weight: 700;
+}
+
+strong {
+  color: var(--cyed-navy);
+  font-weight: 700;
+}
+
+blockquote {
+  margin: 1.4rem 0;
+  padding: 0.85rem 1.1rem;
+  color: var(--cyed-navy);
+  background: var(--cyed-surface-teal);
+  border-left: 5px solid var(--cyed-teal);
+  border-radius: 0 0.55rem 0.55rem 0;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--cyed-border);
+}
+
+/* Tables are optimized for transition tables and mathematical comparisons. */
+table {
+  width: 100%;
+  margin: 1.25rem 0 1.75rem;
+  overflow: hidden;
+  border: 1px solid var(--cyed-border);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.65rem;
+}
+
+thead {
+  color: var(--icesi-white);
+  background: var(--cyed-navy);
+}
+
+th,
+td {
+  padding: 0.72rem 0.85rem;
+  border-right: 1px solid var(--cyed-border);
+  border-bottom: 1px solid var(--cyed-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--cyed-surface-soft);
+}
+
+tbody tr:hover {
+  background: rgb(142 202 230 / 22%);
+}
+
+/* Admonitions use the course palette while retaining high-contrast text. */
 .admonition,
 div.admonition {
-  border-color: var(--icesi-blue);
-  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--cyed-border);
+  border-left: 6px solid var(--cyed-teal);
+  border-radius: 0.7rem;
+  box-shadow: 0 4px 16px rgb(2 48 71 / 7%);
 }
 
 .admonition-title,
 div.admonition > .admonition-title {
-  background-color: var(--icesi-blue-soft);
-  color: var(--icesi-blue-dark);
+  color: var(--cyed-navy);
+  background: var(--cyed-surface-teal);
+  font-weight: 700;
 }
 
-code,
-pre {
-  border-radius: 6px;
+.admonition.warning,
+div.admonition.warning,
+.admonition.caution,
+div.admonition.caution {
+  border-left-color: var(--cyed-orange);
 }
 
+.admonition.warning > .admonition-title,
+div.admonition.warning > .admonition-title,
+.admonition.caution > .admonition-title,
+div.admonition.caution > .admonition-title {
+  background: var(--cyed-surface-yellow);
+}
+
+.admonition.important,
+div.admonition.important {
+  border-left-color: var(--cyed-yellow);
+}
+
+/* Dropdown hints become easy to scan without turning answers into visual noise. */
+details {
+  margin: 1rem 0;
+  border: 1px solid var(--cyed-border);
+  border-radius: 0.6rem;
+  background: var(--cyed-surface);
+}
+
+summary {
+  padding: 0.72rem 0.95rem;
+  color: var(--cyed-navy);
+  background: var(--cyed-surface-soft);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+details[open] summary {
+  border-bottom: 1px solid var(--cyed-border);
+  background: rgb(142 202 230 / 22%);
+}
+
+details > :not(summary) {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+/* Code and Jupyter cells. */
+code {
+  color: var(--cyed-navy);
+  background: rgb(142 202 230 / 20%);
+  border-radius: 0.3rem;
+}
+
+pre,
+.highlight {
+  border: 1px solid var(--cyed-border);
+  border-radius: 0.65rem;
+  background: var(--cyed-code-bg);
+}
+
+pre code,
+.highlight code {
+  background: transparent;
+}
+
+.cell_input,
+.cell_output {
+  overflow: hidden;
+  border: 1px solid var(--cyed-border);
+  border-radius: 0.65rem;
+}
+
+.cell_input {
+  box-shadow: inset 4px 0 0 var(--cyed-teal);
+}
+
+.cell_output {
+  box-shadow: inset 4px 0 0 var(--cyed-sky);
+}
+
+/* Buttons and previous/next navigation. */
 button,
 .btn {
-  border-radius: 6px;
+  border-radius: 0.5rem;
 }
 
-.cell_output,
-.cell_input {
-  border-color: var(--icesi-border);
+.btn-primary,
+button.primary {
+  color: var(--icesi-white);
+  background: var(--cyed-navy);
+  border-color: var(--cyed-navy);
+}
+
+.btn-primary:hover,
+button.primary:hover {
+  color: var(--cyed-navy);
+  background: var(--cyed-yellow);
+  border-color: var(--cyed-yellow);
 }
 
 .prev-next-area a {
-  color: var(--icesi-blue-dark);
+  color: var(--cyed-navy);
+  border-color: var(--cyed-border);
+  border-radius: 0.6rem;
+}
+
+.prev-next-area a:hover {
+  background: var(--cyed-surface-teal);
+  border-color: var(--cyed-teal);
+}
+
+input[type="checkbox"] {
+  accent-color: var(--cyed-teal-dark);
+}
+
+/* Mermaid and other diagrams remain legible on the soft content surface. */
+.mermaid {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--cyed-surface-soft);
+  border: 1px solid var(--cyed-border);
+  border-radius: 0.7rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --icesi-ink: #f6f7ff;
-    --icesi-muted: #c8cbe0;
-    --icesi-border: #383a52;
-    --icesi-surface: #11131f;
-    --icesi-surface-alt: #171a2a;
-    --icesi-blue-soft: #25265f;
+    --cyed-link: #8ecae6;
+    --cyed-ink: #eaf7fc;
+    --cyed-muted: #b9d4df;
+    --cyed-border: #27566a;
+    --cyed-surface: #021f2e;
+    --cyed-surface-soft: #062a3c;
+    --cyed-surface-teal: #073b4f;
+    --cyed-surface-yellow: #493b08;
+    --cyed-code-bg: #011a27;
+    color-scheme: dark;
   }
 
   body,
+  .bd-header,
+  .navbar,
   .bd-sidebar-primary,
   .sidebar-primary {
-    color: var(--icesi-ink);
-    background: var(--icesi-surface);
+    color: var(--cyed-ink);
+    background-color: var(--cyed-surface);
   }
 
   .bd-sidebar-primary,
   .sidebar-primary {
-    background: var(--icesi-surface-alt);
+    background:
+      linear-gradient(180deg, rgb(33 158 188 / 14%), transparent 13rem),
+      var(--cyed-surface-soft);
+  }
+
+  .logo__title,
+  .bd-sidebar-primary a,
+  .sidebar-primary a,
+  .toc-entry a,
+  .bd-content h1,
+  main h1,
+  .bd-content h2,
+  main h2,
+  .bd-content h4,
+  main h4,
+  strong {
+    color: var(--cyed-ink);
+  }
+
+  .bd-content h3,
+  main h3 {
+    color: var(--cyed-sky);
+  }
+
+  /* The negative logo treatment is white on institutional Icesi blue. */
+  .logo,
+  .navbar-brand,
+  .logo__link {
+    background: var(--icesi-brand-blue);
+  }
+
+  thead {
+    color: var(--cyed-navy);
+    background: var(--cyed-sky);
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--cyed-surface-soft);
+  }
+
+  code {
+    color: var(--cyed-sky);
+    background: rgb(33 158 188 / 18%);
+  }
+
+  pre code,
+  .highlight code {
+    background: transparent;
+  }
+}
+
+@media (max-width: 720px) {
+  body {
+    font-size: 0.98rem;
+  }
+
+  .logo__image,
+  .navbar-brand img {
+    max-height: 3.5rem;
+  }
+
+  .bd-content h1,
+  main h1 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

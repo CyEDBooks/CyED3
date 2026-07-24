@@ -17,3 +17,8 @@ La transición asociada a compras tiene un identificador que empieza con c (may�
 Deben entregar:
 1. diagramas de los tres autómatas
 2. el notebook con la implementación de los autómatas en pyformlang y los dataframes resultantes.
+<!--
+Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+Licensed under the PolyForm Noncommercial License 1.0.0.
+Commercial use is prohibited without prior written authorization.
+-->

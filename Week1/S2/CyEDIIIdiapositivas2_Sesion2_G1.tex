@@ -1,0 +1,1098 @@
+% Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+% Licensed under the PolyForm Noncommercial License 1.0.0.
+% Commercial use is prohibited without prior written authorization.
+%===============================================================================
+% LaTeX  Diapositivas ComputaciÛn y Estructuras Discretas III 2023-2 ICESI
+% AndréÈs A. Aristiz·bal P. - ¡ngela P. Villota G.
+%===============================================================================
+%===============================================================================
+\documentclass[compress,xcolor={dvipsnames}]{beamer}
+\mode<presentation> {
+%============================================================================== 
+\usetheme{Boadilla}
+%\usetheme{Copenhagen}
+%\usetheme{CambridgeUS}
+%============================================================================== 
+%\usecolortheme{crane}
+%\usecolortheme{seahorse}
+%============================================================================== 
+%\usecolortheme{crane}
+\usecolortheme{whale}
+%============================================================================== 
+\usefonttheme[onlylarge]{structurebold}
+
+%==============================================================================
+%==============================================================================
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+%\setbeamercolor{structure}{fg=black!80!white,bg=white}
+%\setbeamercolor{palette quaternary}{fg=white!80!gray,bg=red!50!black}}
+
+\setbeamercolor{structure}{fg=white,fg=blue!60!black}  %%%%Estaba en 70
+\setbeamercolor{palette quaternary}{fg=gray!40!black,bg=gray!20!white}}
+
+
+%=============================================================================== 
+%========================================================================================
+\usepackage[spanish,activeacute]{babel}
+\usepackage[applemac]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{indentfirst}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{newlfont}
+\usepackage{exscale}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+\usepackage{amscd}
+\usepackage{pb-diagram}
+%\usepackage{pstricks}
+\usepackage{makeidx}
+\usepackage{textpos}
+
+%==============================================================================
+%==============================================================================
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+%============================================================================== 
+%=======================================================================================
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposition}
+\newtheorem{afir}{Afirmación}
+\newtheorem{obs}{Observación}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ej}{Example}
+\newtheorem{ejer}{Exercise}
+\newtheorem{ejers}{Exercises}
+\newtheorem{ejs}{Examples}
+\newtheorem{df}{Definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Flechas
+\newcommand{\stateequiv}{\,\sim\,}
+\newcommand{\entonces}{\,\rightarrow\,}
+\newcommand{\pertenece}{\,\in \,}
+\newcommand{\talque}{\,| \,}
+\newcommand{\sii}{\,\leftrightarrow\,}
+\newcommand{\ra}{\,\rightarrow\,}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\Ra}{\;\Longrightarrow\;}
+\newcommand{\lora}{\longrightarrow}
+\newcommand{\we}{\,\wedge\,}
+\newcommand{\ve}{\,\vee \,}
+\newcommand{\bbsq}{\blacksquare\!\blacksquare}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Símbolos lógicos
+\newcommand{\mo}{\models}
+\newcommand{\lan}{\langle}
+\newcommand{\ran}{\rangle}
+\newcommand{\ap}{\approx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Letras
+\newcommand{\vep}{\varepsilon}
+\newcommand{\vph}{\varphi}
+\newcommand{\de}{\delta}
+\newcommand{\si}{\sigma}
+\newcommand{\Si}{\Sigma}
+\newcommand{\om}{\omega}
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\vom}{\varOmega}
+\newcommand{\vTh}{\varTheta}
+\newcommand{\vth}{\vartheta}
+\newcommand{\vDe}{\varDelta}
+\newcommand{\wh}{\widehat}
+\newcommand{\nn}{\~n}
+\newcommand{\m}{i}
+\newcommand{\ps}{P_{\Sigma}}
+\newcommand{\psone}{P_{\Sigma^{*}}}
+\newcommand{\psoneast}{P_{\Sigma'}}
+\newcommand{\ts}{T_{\Sigma}}
+\newcommand{\dis}{\displaystyle}
+\newenvironment{variableblock}[3]{%
+  \setbeamercolor{block body}{#2}
+  \setbeamercolor{block title}{#3}
+  \begin{block}{#1}}{\end{block}}
+
+%============================================================================== 
+%==========================================================================================
+
+\title{Computaci\'on y Estructuras Discretas III}
+
+\author[Andrés A. Aristizábal P.]{Andrés A. Aristizábal P. aaaristizabal@icesi.edu.co \\ Angela Villota - apvillota@icesi.edu.co}
+
+\institute[Universidad ICESI]{Departamento de Computaci\'on y Sistemas Inteligentes \\
+\includegraphics[height=1.5cm]{../logoICESI2.pdf}}
+
+\date[]{\today}
+
+%==============================================================================
+\AtBeginSubsection[]{
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Agenda}
+    \tableofcontents[currentsubsection, 
+    hideothersubsections, 
+    sectionstyle=show/shaded, 
+    subsectionstyle=show/shaded,]
+  \end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%============================================================================== CUERPO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\setlength{\parindent}{0cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+ %   \titlepage
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Agenda del día}
+  \tableofcontents
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+
+%\section[Regular languages and Automata theory]{Regular languages and Automata theory}
+%\section{Operations Using Languages}
+%
+%%%%%%%%%%%%%%
+%{\footnotesize\begin{frame}{Operations as Sets}
+%
+%\begin{df}
+%Since languages over $\Sigma$ are subsets of $\Sigma^*,$ the usual operations between sets are also valid operations between languages. Then, if $A$ and $B$ are languages over $\Sigma$ ($A, \, B \subseteq \Sigma^*$), then the following are also languages over $\Sigma:$
+%\begin{center}
+%\begin{tabular}{ll}
+%$A \cup B$ & Union \\
+%$A \cap B$ & Intersection \\
+%$A-B$ & Difference \\
+%$\overline{A} = \Sigma^*-A$ & Complement 
+%\end{tabular}
+%\end{center}
+%\end{df}
+%These operations between languages are called boolean operations in order to differentiate them from the linguistic operations, which are extensions to the languages of the operations between strings.
+%\end{frame}}
+%%%%%%%%%%%%%%
+%\subsection{Concatenation}
+%\begin{frame}{Concatenation}
+%
+%\begin{df}
+%The concatenation of two languages $A$ and $B$ over $\Sigma,$ represented as $A \cdot B$ or simply $A B$ is defined as: \pause
+%\[A B = \{u v \talque u \pertenece A, \, v \pertenece B\}\] \pause
+%In general, $A B \neq B A$
+%\end{df}
+%\end{frame}
+%
+%\setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+%
+%%%%%%%%%%%%%%
+%{\scriptsize \begin{frame}{Properties over Concatenation}
+%
+%\begin{df}
+%Given languages $A, B, C$ over $\Sigma,$ i.e.  $A, \, B, \, C \subseteq \Sigma^*.$ Then \pause
+%\begin{enumerate}
+%\item $A \cdot \emptyset = \emptyset \cdot A = \emptyset.$ 
+%\item $A \cdot \{\lambda\} = \{\lambda\} \cdot A = A.$ 
+%\item Associative property,
+%\begin{center}
+%$A \cdot (B \cdot C) = (A \cdot B) \cdot C.$
+%\end{center} 
+%\item Distributivity of concatenation with respect to union,
+%\begin{center}
+%$A \cdot (B \cup C) = A \cdot B \cup A \cdot C.$ \\
+%$(B \cup C) \cdot A = B \cdot A \cup C \cdot A.$ 
+%\end{center} 
+%\item Generalized distributivity property. If $\{B_i\}_{i \pertenece I}$ is any family of languages over $\Sigma,$ then
+%\begin{center}
+%$A \cdot \bigcup\limits_{i \pertenece I} B_i = \bigcup\limits_{i \pertenece I} (A \cdot B_i),$ \\
+%$\Big( \bigcup\limits_{i \pertenece I} B_i\Big) \cdot A = \bigcup\limits_{i \pertenece I} (B_i \cdot A).$ 
+%\end{center} 
+%\end{enumerate}
+%\end{df}
+%\end{frame}}
+%
+%
+%%\subsection{Exercises}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%{\begin{frame}{Exercises}
+%%\begin{ejer}
+%%If $u,v \pertenece \Sigma^*,$ show that $(u v)^R = v^R u^R.$ 
+%%\end{ejer}
+%%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%{\begin{frame}{Exercises}
+%%\begin{ejer}
+%%Show that $A \cdot (B \cdot C) = (A \cdot B) \cdot C.$
+%%\end{ejer}
+%%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%{\begin{frame}{Exercises}
+%%\begin{ejer}
+%%Show that $A \cdot \{\lambda\} = \{\lambda\} \cdot A = A.$
+%%\end{ejer}
+%%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%{\begin{frame}{Exercises}
+%%\begin{ejer}
+%%Show that $A \cdot \emptyset = \emptyset \cdot A = \emptyset.$
+%%\end{ejer}
+%%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Power}
+{\footnotesize \begin{frame}{Power}
+What is the power of a language? 
+\begin{df}
+Given a language $A$ over $\Sigma,$ $(A \subseteq \Sigma^*),$ and a natural number $n \pertenece \mathbb{N},$ $A^n$ is defined in the following way: 
+\begin{center}
+\begin{tabular}{lll}
+$A^0$ & $=$ & $\{\lambda\},$ \\ 
+$A^n$ & $=$ & $\underbrace{A A \cdot \cdot \cdot A}_\text{n times} = \{u_1 \cdot \cdot \cdot u_n \talque u_i \pertenece A, \text{ for all } i, \, 1 \leq i \leq n \}.$ 
+\end{tabular}
+\end{center}
+\end{df}
+$A^2$ is the set of double string concatenations of $A,$ $A^3$ the set of triple string concatenations of $A$ and in general $A^n$ is the set of $n$ string concatenations of $A.$
+\end{frame}}
+\subsection{Kleene Closure}
+{\footnotesize\begin{frame}{Kleene Closure}
+\begin{df}
+The Kleene closure of $A,$ $A \subseteq \Sigma^*,$ is the union of all powers of $A$ and it is represented by $A^*.$ 
+\begin{center}
+\begin{tabular}{lll}
+$A^*$ & $=$ & set of all string concatenations of $A,$ \\ 
+& & including $\lambda$ \\ 
+ & $=$ & $\{u_1, \cdot \cdot \cdot u_n \talque u_i \pertenece A, \, n \geq 0\}$ 
+\end{tabular}
+\end{center}
+\end{df}
+
+\end{frame}}
+
+{\footnotesize\begin{frame}{Positive Closure}
+
+\begin{df}
+The positive closure of a language $A,$ $A \subseteq \Sigma^*,$ is the union of all powers of $A,$ without including $\lambda$ and is represented by $A^+.$ 
+\begin{center}
+\begin{tabular}{lll}
+$A^+$ & $=$ & set of all string concatenations of $A,$ \\ 
+& & without including $\lambda$ \\ 
+ & $=$ & $\{u_1, \cdot \cdot \cdot u_n \talque u_i \pertenece A, \, n \geq 1\}$ 
+\end{tabular}
+\end{center}
+\end{df}
+
+\end{frame}}
+%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Properties}
+Which are the properties of $*$ and $+$? 
+\begin{df}
+\begin{enumerate}
+\item $A^+ = A^* \cdot A = A \cdot A^*.$ 
+\item $A^* \cdot A^* = A^*.$ 
+\item ($A^*)^n = A^*,$ for all n, $n \geq 1.$  
+\item ($A^*)^* = A^*.$ 
+\item $A^+ \cdot A^+ \subseteq A^+.$  
+\item ($A^*)^+ = A^*.$  
+\item ($A^+)^* = A^*.$  
+\item ($A^+)^+ = A^+.$ 
+\item If $A$ and $B$ are languages over $\Sigma^*,$ then $(A \cup B)^* = (A^* B^*)^*.$
+\end{enumerate}
+\end{df}
+\end{frame}}
+\subsection{Reverse}
+{\footnotesize\begin{frame}{Reverse}
+
+\begin{df}
+Given $A,$ a language over $\Sigma,$ we define $A^R$ in the following way:
+\[A^R = \{u^R \talque u \pertenece A\}\] 
+\end{df}
+$A^R$ is the inverse of $A.$
+\end{frame}}
+
+%
+%%%%%%%%%%%%%
+%%{\footnotesize\begin{frame}{Languages}
+%%Which are the properties of the inverse of a language? \pause
+%%\begin{df}
+%%Given $A$ and $B$ langauges over $\Sigma$ ($A, \, B \subseteq \Sigma^*).$ \pause
+%%\begin{enumerate}
+%%\item $(A \cdot B)^R = B^R \cdot A^R.$ \pause
+%%\item $(A \cup B)^R = A^R \cup B^R.$ \pause
+%%\item $(A \cap B)^R = A^R \cap B^R.$ \pause
+%%\item $(A^R)^R = A.$ \pause
+%%\item $(A^*)^R = (A^R)^*.$ \pause
+%%\item $(A^+)^R = (A^R)^+.$ 
+%%\end{enumerate}
+%%\end{df}
+%%\end{frame}}
+%%%%%%%%%%%%%
+%
+
+\subsection{Languages}
+{\footnotesize \begin{frame}{Languages}
+What is the power of a language? \pause
+\begin{df}
+Given a language $A$ over $\Sigma,$ $(A \subseteq \Sigma^*),$ and a natural numberl $n \pertenece \mathbb{N},$ $A^n$ is defined in the following way: \pause
+\begin{center}
+\begin{tabular}{lll}
+$A^0$ & $=$ & $\{\lambda\},$ \\ 
+$A^n$ & $=$ & $\underbrace{A A \cdot \cdot \cdot A}_\text{n times} = \{u_1 \cdot \cdot \cdot u_n \talque u_i \pertenece A, \text{ for all } i, \, 1 \leq i \leq n \}.$ \pause
+\end{tabular}
+\end{center}
+\end{df}
+$A^2$ is the set of double string concatenations of $A,$ $A^3$ the set of triple string concatenations of $A$ and in general $A^n$ is the set of $n$ string concatenations of $A.$
+\end{frame}}
+
+{\footnotesize\begin{frame}{Languages}
+What is the Kleene closure of a language? \pause
+\begin{df}
+The Kleene closure of $A,$ $A \subseteq \Sigma^*,$ is the union of all powers of $A$ and it is represented by $A^*.$ \pause
+\begin{center}
+\begin{tabular}{lll}
+$A^*$ & $=$ & set of all string concatenations of $A,$ \\ 
+& & including $\lambda$ \\ 
+ & $=$ & $\{u_1, \cdot \cdot \cdot u_n \talque u_i \pertenece A, \, n \geq 0\}$ 
+\end{tabular}
+\end{center}
+\end{df}
+
+\end{frame}}
+
+{\footnotesize\begin{frame}{Languages}
+What is the positive closure of a language? \pause
+\begin{df}
+The positive closure of a language $A,$ $A \subseteq \Sigma^*,$ is the union of all powers of $A,$ without including $\lambda$ and is represented by $A^+.$ \pause
+\begin{center}
+\begin{tabular}{lll}
+$A^+$ & $=$ & set of all string concatenations of $A,$ \\ 
+& & without including $\lambda$ \\ 
+ & $=$ & $\{u_1, \cdot \cdot \cdot u_n \talque u_i \pertenece A, \, n \geq 1\}$ 
+\end{tabular}
+\end{center}
+\end{df}
+
+\end{frame}}
+%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Languages}
+Which are the properties of $*$ and $+$? \pause
+\begin{df}
+\begin{enumerate}
+\item $A^+ = A^* \cdot A = A \cdot A^*.$ \pause
+\item $A^* \cdot A^* = A^*.$ \pause
+\item ($A^*)^n = A^*,$ para todo $n \geq 1.$  \pause
+\item ($A^*)^* = A^*.$  \pause
+\item $A^+ \cdot A^+ \subseteq A^+.$  \pause
+\item ($A^*)^+ = A^*.$  \pause
+\item ($A^+)^* = A^*.$  \pause
+\item ($A^+)^+ = A^+.$ \pause
+\item If $A$ and $B$ are languages over $\Sigma^*,$ then $(A \cup B)^* = (A^* B^*)^*.$
+\end{enumerate}
+\end{df}
+\end{frame}}
+
+{\footnotesize\begin{frame}{Languages}
+What is the inverse of a language? \pause
+\begin{df}
+Given $A,$ a language over $\Sigma,$ we define $A^R$ in the following way:
+\[A^R = \{u^R \talque u \pertenece A\}\] \pause
+\end{df}
+$A^R$ is the inverse of $A.$
+\end{frame}}
+
+
+%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Languages}
+Which are the properties of the inverse of a language? \pause
+\begin{df}
+Given $A$ and $B$ langauges over $\Sigma$ ($A, \, B \subseteq \Sigma^*).$ \pause
+\begin{enumerate}
+\item $(A \cdot B)^R = B^R \cdot A^R.$ \pause
+\item $(A \cup B)^R = A^R \cup B^R.$ \pause
+\item $(A \cap B)^R = A^R \cap B^R.$ \pause
+\item $(A^R)^R = A.$ \pause
+\item $(A^*)^R = (A^R)^*.$ \pause
+\item $(A^+)^R = (A^R)^+.$ 
+\end{enumerate}
+\end{df}
+\end{frame}}
+%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Languages}
+What are regular languages? \pause
+\begin{block}{}
+Regular languages from a given alphabet $\Sigma$ are all those languages that can be built from the basic languages $\emptyset, \{\lambda\}, \{a\}, a \pertenece \Sigma,$ using union, concatenation and Kleene closure. \pause
+\end{block}
+Given an alphabet $\Sigma$ \pause
+\begin{df}
+\begin{enumerate}
+\item $\emptyset, \{\lambda\}, \{a\},$ for all $a \pertenece \Sigma,$ are regular languages over $\Sigma.$ These are the so called basic regular languages. \pause
+\item If $A$ and $B$ are regular languages over $\Sigma,$ then the following are also regular: \pause
+\begin{center}
+\begin{tabular}{cl}
+$A \cup B$ & (union), \\ \pause
+$A \cdot B$ & (concatenation), \\ \pause
+$A^*$ & (Kleene closure). 
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{df}
+\end{frame}}
+%%%%%%%%%%%%
+{\scriptsize \begin{frame}{Languages}
+\begin{block}{}
+$\Sigma$ and $\Sigma^*$ are both regular languages over $\Sigma.$ Union, concatenation and Kleene closure are known as regular operations.
+\end{block} \pause
+\begin{ej}
+Given $\Sigma = \{a,b\}.$ The following ones are regular languages over $\Sigma:$ \pause
+\begin{enumerate}
+\item The language $A$ of all strings that have just one $a:$ 
+\begin{center}
+$A = \{b\}^* \cdot \{a\} \cdot \{b\}^*.$ \pause
+\end{center}
+\item The language $B$ of all strings that start with $b:$ 
+\begin{center}
+$B = \{b\} \cdot \{a,b\}^*.$ \pause
+\end{center}
+\item The language $C$ of all strings that contain the string $ba:$ 
+\begin{center}
+$C = \{a,b\}^* \cdot \{ba\} \cdot \{a,b\}^*.$ \pause
+\end{center}
+\item $(\{a\} \cup \{b\}^*) \cdot \{a\}.$ \pause 
+\item $[(\{a\}^* \cup \{b\}^*) \cdot \{b\}]^*.$ 
+\end{enumerate}
+\end{ej}
+\end{frame}}
+
+\section{Regular languages and expressions}
+\subsection{Regular Languages}
+{\footnotesize\begin{frame}{Regular Languages}
+
+\begin{block}{}
+Regular languages from a given alphabet $\Sigma$ are all those languages that can be built from the basic languages $\emptyset, \{\lambda\}, \{a\}, a \pertenece \Sigma,$ using union, concatenation and Kleene closure. \pause
+\end{block}
+Given an alphabet $\Sigma$ 
+\begin{df}
+\begin{enumerate}
+\item $\emptyset, \{\lambda\}, \{a\},$ for all $a \pertenece \Sigma,$ are regular languages over $\Sigma.$ These are the so called basic regular languages. 
+\item If $A$ and $B$ are regular languages over $\Sigma,$ then the following are also regular: 
+\begin{center}
+\begin{tabular}{cl}
+$A \cup B$ & (union), \\ 
+$A \cdot B$ & (concatenation), \\ 
+$A^*$ & (Kleene closure). 
+\end{tabular}
+\end{center}
+\end{enumerate}
+\end{df}
+\end{frame}}
+%%%%%%%%%%%%
+{\scriptsize \begin{frame}{Regular Languages}
+\begin{block}{}
+$\Sigma$ and $\Sigma^*$ are both regular languages over $\Sigma.$ Union, concatenation and Kleene closure are known as regular operations.
+\end{block} 
+\begin{ej}
+Given $\Sigma = \{a,b\}.$ The following ones are regular languages over $\Sigma:$ 
+\begin{enumerate}
+\item The language $A$ of all strings that have just one $a:$ 
+\begin{center}
+$A = \{b\}^* \cdot \{a\} \cdot \{b\}^*.$ 
+\end{center}
+\item The language $B$ of all strings that start with $b:$ 
+\begin{center}
+$B = \{b\} \cdot \{a,b\}^*.$ 
+\end{center}
+\item The language $C$ of all strings that contain the string $ba:$ 
+\begin{center}
+$C = \{a,b\}^* \cdot \{ba\} \cdot \{a,b\}^*.$ 
+\end{center}
+\item $(\{a\} \cup \{b\}^*) \cdot \{a\}.$ 
+\item $[(\{a\}^* \cup \{b\}^*) \cdot \{b\}]^*.$ 
+\end{enumerate}
+\end{ej}
+\end{frame}}
+\subsection{Regular Expressions}
+%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Regular Expressions}
+\textbf{Regular expression} is a sequence of symbols and characters expressing a \textbf{Regular Language}, they are used as strings or patterns to be searched for within a longer piece of text.
+
+\end{frame}}
+
+{\footnotesize\begin{frame}{Regular Expressions}
+
+\begin{df}
+\begin{enumerate}
+\item Basic regular expressions:
+\begin{center}
+\begin{tabular}{ll}
+$\emptyset$ & is a regular expression that represents the language $\emptyset$  \\ 
+$\lambda$ & is a regular expression that represents the language $\{\lambda\}.$  \\ 
+$a$ & is a regular expression that represents the language $\{a\},$ \\
+& $a \pertenece \Sigma.$ 
+\end{tabular}
+\end{center}
+\item If $R$ and $S$ are regular expressions over $\Sigma,$ the following ones are also regular: 
+\begin{center}
+$(R)(S)$ \\ 
+$(R \cup S)$ \\ 
+$(R)^*$ 
+\end{center}
+
+\end{enumerate}
+\end{df}
+
+\end{frame}}
+%%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Example}
+\begin{ej}
+Given the alphabet $\Sigma = \{a,b,c\},$ \\ 
+\[(a \cup b^*) a^* (bc)^* \] 
+is the regular expression that represents 
+\[(\{a\} \cup \{b\}^*) \cdot \{a\}^* \cdot \{bc\}^* \] 
+\end{ej}
+\end{frame}}
+
+
+
+
+
+\begin{frame}{An overview of regular expressions}
+\textbf{In programming, a regular expression is }
+\begin{block}{}
+\begin{itemize}
+\item A pattern of text that consists of \textbf{literals} (ordinary characters) and special characters known as \textbf{metacharacters}. 
+\item e.g. \texttt{a\textbackslash w*}
+\end{itemize}
+\end{block}
+
+\begin{block}{}
+We can also find
+\begin{itemize}
+\item Character classes (\texttt{[..]})
+\item Negation of ranges ($[ \textasciicircum  \dots]$)
+\item Sets of regular expressions  ($|$)
+\item Quantifiers
+\item Boundary matchers
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+What are literals? 
+\begin{block}{}
+\begin{itemize}
+\item Are the simplest form of pattern matching in regular expression.
+\item They will simply succeed whenever that literal is found.
+\item If we apply the regular expression \textbf{fox }to search the phrase T\textit{he quick brown fox jumps over the lazy dog}, we will find one match.
+\item We can also obtain several results instead of just one, if we apply the
+regular expression \texttt{be} to the following phrase To be, or not to be.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+What are metacharacters? 
+\begin{block}{}
+\begin{itemize}
+\item A metacharacter is a character that has a special meaning during pattern processing. 
+\item We use metacharacters in regular expressions to define the search criteria and any text manipulations. 
+\item The simplest example of a metacharacter is the full stop.
+\item The full stop character matches any single character of any sort (apart from a newline).
+\item e.g. \texttt{.at} means: any letter, followed by the letter \texttt{a} followed by the letter \texttt{t}.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+What are character classes? 
+\begin{block}{}
+\begin{itemize}
+\item The character classes (also known as character sets) allow us to define a character that will match if any of the defined characters on the set is present.
+\item To define a character class, we should use the opening square bracket metacharacter [, then any accepted characters, and finally close with a closing square bracket ].
+\item e.g. \texttt{licen[cs]e}
+\item It is possible to also use the range of a character. 
+\ This is done by leveraging the hyphen symbol (-) between two related characters.
+\item e.g. To match any lowercase letter we can use \texttt{[a-z].} 
+\item e.g. To match any single digit we can define the character set \texttt{[0-9].}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+How to work with several character classes? 
+\begin{block}{}
+\begin{itemize}
+\item The character classes' \, ranges can be combined to be able to match a character against many ranges. 
+\item We just need to put one range after the other. 
+\item e.g. If we want to match any lowercase or uppercase alphanumeric character, we can use \texttt{[0-9a-zA-Z]} 
+\item This can be alternatively written using the union mechanism: \texttt{[0-9[a-z[A-Z]]].}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+What do we mean by negation of ranges? 
+\begin{block}{}
+\begin{itemize}
+\item We can invert the meaning of a character set by placing a caret (\textasciicircum) symbol right after the opening square bracket metacharacter ([). 
+\item If we have a character class such as \texttt{[0-9]} meaning any digit, the negated character class \texttt{[\textasciicircum0-9]} will match anything that is not a digit. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+%\begin{frame}{An overview of regular expressions}
+%Some character classes supported at this moment in Python 
+%\begin{block}{}
+%\begin{itemize}
+%\item \texttt{.} This element matches any character except newline \texttt{\textbackslash n} \pause
+%\item \texttt{\textbackslash d} This matches any decimal digit. \pause
+%\item \texttt{\textbackslash D} This matches any non-digit character. \pause
+%\item \texttt{\textbackslash s} This matches any whitespace character. \pause
+%\item \texttt{\textbackslash S} This matches any non whitespace character. \pause
+%\item \texttt{\textbackslash w} This matches any alphanumeric character. \pause
+%\item \texttt{\textbackslash W} This matches any non alphanumeric character. 
+%\end{itemize}
+%\end{block}
+%\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+How to match against a set of regular expressions? \pause
+\begin{block}{}
+\begin{itemize}
+\item This is accomplished by using the pipe symbol \texttt{|}. \pause
+\item It alternates between regular expressions. \pause
+\item e.g. \texttt{yes|no} \pause
+\item e.g. \texttt{yes|no|maybe}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+What are quantifiers? \pause
+\begin{block}{}
+\begin{itemize}
+\item The mechanisms to define how a character, metacharacter, or character set can be repeated. \pause
+\end{itemize}
+\end{block}
+Which are the three basic quantifiers? \pause
+\begin{block}{}
+\begin{itemize}
+\item \texttt{?} 0 or 1 repetitions \pause
+\item \texttt{*} 0 or more times \pause
+\item \texttt{+} 1 or more times \pause
+\item \texttt{\{n,m\}} Between $n$ and $m$ times. \pause
+\begin{itemize}
+\item \texttt{\{n\}} Exactly $n$ times. \pause
+\item \texttt{\{n,\}} $n$ or more times. \pause
+\item \texttt{\{,n\}} At most $n$ times. \pause
+\end{itemize}
+\item e.g. \texttt{cars?} Singular or plural.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+\begin{ej}
+How to match a telephone number that can be in the format 555-555-555, 555 555 555, or 555555555. 
+\end{ej}
+\end{frame}
+
+%\begin{frame}{An overview of regular expressions}
+%What are greedy and reluctant quantifiers? \pause
+%\begin{block}{}
+%\begin{itemize}
+%\item The greedy behavior of the quantifiers is applied by default in the quantifiers. \pause
+%\item A greedy quantifier will try to match as much as possible to have the biggest match result possible. \pause
+%\item The non-greedy behavior can be requested by adding an extra question mark to the quantifier. \pause
+%\item For example, \texttt{??}, \texttt{*?} or \texttt{+?}. \pause
+%\item A quantifier marked as reluctant will behave like the exact opposite of the greedy ones. \pause
+%\item They will try to have the smallest match possible.
+%\end{itemize}
+%\end{block}
+%\end{frame}
+
+%\begin{frame}{An overview of regular expressions}
+%\begin{ej}
+%Given the string \texttt{English $\rightarrow$ "Hello", $\rightarrow$ Spanish $\rightarrow$ "Hola".} What would be the results of using the regular expressions \texttt{".+"} and \texttt{".+?"} over that string.
+%\end{ej}
+%\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+What are boundary matchers? \pause
+\begin{block}{}
+\begin{itemize}
+\item The boundary matchers are a set or characters that will correspond to a particular position inside of the input. \pause
+\item \texttt{\textasciicircum} Matches at the beginning of a line \pause
+\item \texttt{\$} Matches at the end of a line \pause
+\item \texttt{\textbackslash b} Matches a word boundary \pause
+\item \texttt{\textbackslash B} The opposite of  \textbackslash b \pause
+\item \texttt{\textbackslash A} Matches the beginning of the input \pause
+\item \texttt{\textbackslash Z} Matches the end of the input 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+\begin{ej}
+Write a regular expression that will match lines that start with \texttt{Name: } and make sure that after the name, there are only alphabetic characters or spaces until the end of the line.
+\end{ej}
+\end{frame}
+
+\begin{frame}{An overview of regular expressions}
+\begin{ej}
+What is the difference between the regular expressions \texttt{hello} and \texttt{\textbackslash bhello\textbackslash b}?
+\end{ej}
+\end{frame}
+
+\section{Regular expressions in Python}
+\begin{frame}{Regular expressions in Python}
+How are regular expressions supported in Python? 
+\begin{block}{}
+\begin{itemize}
+\item They are supported by the \texttt{re} module.
+\item We only need to import it to start using it. 
+\end{itemize}
+\end{block}
+How to start using them to match a pattern? 
+\begin{block}{}
+\begin{itemize}
+\item We compile a pattern with \texttt{pattern = re.compile(r'foo')} 
+\item We can try to match it against a string \texttt{pattern.match("foo bar")}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+What are the building blocks for Python Regex? 
+\begin{block}{}
+\begin{itemize}
+\item RegexObject
+\begin{itemize}
+\item Also known as Pattern Object. 
+\item Represents a compiled regular expression.
+\end{itemize}
+\item MatchObject
+\begin{itemize}
+\item Represents the matched pattern.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+What is a RegexObject? 
+\begin{block}{}
+\begin{itemize}
+\item Before matching patterns we need to compile the regex. 
+\item The compilation produces a reusable pattern object. 
+\item This object provides all the operations that can be done (i.e. matching a pattern and finding all substrings that match a particular regex). 
+\item e.g. \texttt{pattern = re.compile(r`<HTML>')} 
+\item \texttt{pattern.match(``<HTML>")}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+What are two ways of matching a pattern? 
+\begin{block}{}
+\begin{itemize}
+\item We can compile a pattern, which gives us a RegexObject. 
+\item We can just use the module operations.
+\item If we compile a pattern we are able to reuse it.
+\item e.g. \texttt{pattern = re.compile(r`<HTML>')} 
+\item \texttt{pattern.match(``<HTML>")}
+\item e.g. \texttt{re.match(r`<HTML>', ``<HTML>")} 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+How to search for string that match a pattern? 
+\begin{block}{}
+\begin{itemize}
+\item In python we have two operations match and search. 
+\end{itemize}
+\end{block}
+How does match work? 
+\begin{block}{}
+\begin{itemize}
+\item This method tries to match the compiled pattern only at the beginning of the string. 
+\item If there is a match, then it returns a MatchObject.
+\item It has two optional parameters, pos and endpos.
+\item pos determines the position from where to search the pattern in the string.
+\item endpos determines the position until where the pattern is searched in the string.
+\item \texttt{pattern.match(string,pos,endpos)}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+Given \texttt{pattern = re.compile(r`\textasciicircum<HTML>')} what is the result of: \pause 
+\begin{itemize}
+\item \texttt{pattern.match(``<HTML>")} 
+\item \texttt{pattern.match(``  <HTML>")} 
+\item \texttt{pattern.match(``  <HTML>"[2:])}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+Given \texttt{pattern = re.compile(r`<HTML>\$')} what is the result of: 
+\begin{itemize}
+\item \texttt{pattern.match(``<HTML> ",0,6)} 
+\item \texttt{pattern.match(``<HTML> "[:6])}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+How does search work? 
+\begin{block}{}
+\begin{itemize}
+\item This operation would be like the match of many languages.
+\item It tries to match the pattern at any location of the string and not just at the beginning. 
+\item If there is a match, then it returns a MatchObject.
+\item The pos and endpos parameters have the same meaning as that in the match
+operation.
+\item pos determines the position from where to search the pattern in the string.
+\item endpos determines the position until where the pattern is searched in the string.
+\item \texttt{pattern.match(string,pos,endpos)}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+Given \texttt{pattern = re.compile(r``world'')} what is the result of: 
+\begin{itemize}
+\item \texttt{pattern.match(``hello world")} 
+\item \texttt{pattern.match(``hola mundo '')}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+Given \texttt{pattern = re.compile(r`\textasciicircum<HTML>', re.MULTILINE)} what is the result of: 
+\begin{itemize}
+\item \texttt{pattern.search(``<HTML>")} 
+\item \texttt{pattern.search(`` <HTML>'')} 
+\item \texttt{pattern.search(`` \textbackslash n<HTML>'')} 
+\item \texttt{pattern.search(``  \textbackslash n<HTML>'',3)} 
+\item \texttt{pattern.search(``</div></body>\textbackslash n<HTML>'',4)} 
+\item \texttt{pattern.search(``  \textbackslash n<HTML>'',4)}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+How does findall work? 
+\begin{block}{}
+\begin{itemize}
+\item It returns a list with all the non-overlapping occurrences of a pattern and not the MatchObject like search and match do. 
+\item e.g. \texttt{pattern = re.compile(r``\textbackslash w+")}
+\item \texttt{pattern.findall(``hello world'')}
+\item \texttt{[`hello', `world']}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+\begin{itemize}
+\item \texttt{pattern = re.compile(r"(\textbackslash w+) (\textbackslash w+)")}
+\item \texttt{pattern.findall(``Hello world hola mundo'')}
+\item \texttt{[(`Hello', `world'), (`hola', 'mundo')]}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+How does finditer work? 
+\begin{block}{}
+\begin{itemize}
+\item Works essentially as as findall.
+\item It returns an iterator in which each element is a MatchObject.
+\item We can use the operations provided by this object. 
+\item Useful when you need information for every match.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+\begin{itemize}
+\item \texttt{pattern = re.compile(r``(\textbackslash w+) (\textbackslash w+)")}
+\item \texttt{it = pattern.finditer(``Hello world hola mundo'')}
+\item \texttt{match = it.next()}
+\item \texttt{match.groups()}
+\item \texttt{(`Hello',`world')}
+\item \texttt{match.span()}
+\item \texttt{(0,11)}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+Which are some operations to modify strings? \pause
+\begin{block}{}
+\begin{itemize}
+\item split(string, maxsplit=0): A string can be split based on the matches of the pattern.
+\item sub(repl, string, count=0): Returns the resulting string after replacing the matched pattern in the original string with the replacement.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+\begin{itemize}
+\item \texttt{pattern = re.compile(r``\textbackslash W")}
+\item \texttt{pattern.split(``Beautiful is better than ugly", 2)}
+\item \texttt{[`Beautiful', `is', `better than ugly']}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+\begin{itemize}
+\item \texttt{pattern = re.compile(r`[0-9]+)}
+\item \texttt{pattern.sub(``-'',``order0, order1 order13'')}
+\item \texttt{`order- order- order-'}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+What is a MatchObject? \pause
+\begin{block}{}
+\begin{itemize}
+\item An object that represents the matched pattern.
+\item We will get one every time you execute one of these operations:
+\begin{itemize}
+\item match
+\item search
+\item finditer
+\end{itemize}
+\item Provides a set of operations for working with the captured groups.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+Which are the main operations for a MatchObject? \pause
+\begin{block}{}
+\begin{itemize}
+\item group
+\item groups
+\item groupdict
+\item start
+\item end
+\item span
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+What is the group operation? \pause
+\begin{block}{}
+\begin{itemize}
+\item Gives the subgroups of the match. 
+\item If invoked with no arguments or zero, returns the entire match. 
+\item If one or more group identifiers are passed, the corresponding groups' \, matches will be returned.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+\begin{itemize}
+\item \texttt{pattern = re.compile(``(\textbackslash w+) (\textbackslash w+)")}
+\item \texttt{match = pattern.search(``Hello world'')}
+\item \texttt{match.group()} $\rightarrow$ \texttt{`Hello world'}
+\item \texttt{match.group(0)} $\rightarrow$ \texttt{`Hello world'}
+\item \texttt{match.group(1)} $\rightarrow$ \texttt{`Hello'}
+\item \texttt{match.group(2)} $\rightarrow$ \texttt{`world'}
+\item \texttt{match.group(0,2)} $\rightarrow$ \texttt{(`Hello world',`world')}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+\begin{itemize}
+\item Groups can be named.
+\item If the pattern has named groups, they can be accessed using the names or the index:
+\item \texttt{pattern = re.compile(r``(?P<first>\textbackslash w+) (?P<second>\textbackslash w+)")}
+\item \texttt{match = pattern.search(``Hello world'')}
+\item \texttt{match.group(`first')} $\rightarrow$ \texttt{`Hello'}
+\item \texttt{match.group(1)} $\rightarrow$ \texttt{`Hello'}
+\item \texttt{match.group(0,`first',2)} $\rightarrow$ \texttt{(`Hello world',`Hello',`world')}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+What is the groups operation? \pause
+\begin{block}{}
+\begin{itemize}
+\item It returns a tuple with all the subgroups in the match instead of giving one or some of the groups. 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+\begin{ej}
+\begin{itemize}
+\item \texttt{pattern = re.compile(``(\textbackslash w+) (\textbackslash w+)")}
+\item \texttt{match = pattern.search(``Hello world'')}
+\item \texttt{match.groups()} $\rightarrow$ \texttt{(`Hello',`world')}
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+What is the groupdict operation? \pause
+\begin{block}{}
+\begin{itemize}
+\item It is used in the cases where named groups have been used. 
+\item It will return a dictionary with all the groups that were found. 
+\item \texttt{pattern = re.compile(r``(?P<first>\textbackslash w+) (?P<second>\textbackslash w+)")}
+\item \texttt{match = pattern.search(``Hello world'')}
+\item \texttt{\{`first': `Hello', `second': `world'\}}
+\item If there aren't named groups, then it returns an empty dictionary.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Regular expressions in Python}
+What about start, end and span operations? \pause
+\begin{block}{}
+\begin{itemize}
+\item start: returns the index where the pattern matched. 
+\item end: returns the end of the substring matched by the group.
+\item span: gives a tuple with the values from start and end.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{Exercises in Python}
+
+\end{document}

@@ -1,0 +1,787 @@
+% Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+% Licensed under the PolyForm Noncommercial License 1.0.0.
+% Commercial use is prohibited without prior written authorization.
+%===============================================================================
+% LaTeX  Diapositivas ComputaciÛn y Estructuras Discretas III 2023-2 ICESI
+% AndréÈs A. Aristiz·bal P. - ¡ngela P. Villota G.
+%===============================================================================
+%===============================================================================
+\documentclass[compress,xcolor={dvipsnames}]{beamer}
+\mode<presentation> {
+%============================================================================== 
+\usetheme{Boadilla}
+%\usetheme{Copenhagen}
+%\usetheme{CambridgeUS}
+%============================================================================== 
+%\usecolortheme{crane}
+%\usecolortheme{seahorse}
+%============================================================================== 
+%\usecolortheme{crane}
+\usecolortheme{whale}
+%============================================================================== 
+\usefonttheme[onlylarge]{structurebold}
+
+%==============================================================================
+%==============================================================================
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+%\setbeamercolor{structure}{fg=black!80!white,bg=white}
+%\setbeamercolor{palette quaternary}{fg=white!80!gray,bg=red!50!black}}
+
+\setbeamercolor{structure}{fg=white,fg=blue!60!black}  %%%%Estaba en 70
+\setbeamercolor{palette quaternary}{fg=gray!40!black,bg=gray!20!white}}
+
+
+%=============================================================================== 
+%========================================================================================
+\usepackage[spanish,activeacute]{babel}
+\usepackage[applemac]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{indentfirst}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{graphics}
+\usepackage{newlfont}
+\usepackage{exscale}
+\usepackage[T1]{fontenc}
+
+\usepackage{tikz}
+\usepackage{amscd}
+\usepackage{pb-diagram}
+%\usepackage{pstricks}
+\usepackage{makeidx}
+\usepackage{textpos}
+
+%==============================================================================
+%==============================================================================
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+%============================================================================== 
+%=======================================================================================
+\newtheorem{teo}{Teorema}
+\newtheorem{prop}{Proposition}
+\newtheorem{afir}{Afirmación}
+\newtheorem{obs}{Observación}
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}{Corollary}
+\newtheorem{ej}{Example}
+\newtheorem{ejer}{Exercise}
+\newtheorem{ejers}{Exercises}
+\newtheorem{ejs}{Examples}
+\newtheorem{df}{Definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Flechas
+\newcommand{\stateequiv}{\,\sim\,}
+\newcommand{\entonces}{\,\rightarrow\,}
+\newcommand{\pertenece}{\,\in \,}
+\newcommand{\talque}{\,| \,}
+\newcommand{\sii}{\,\leftrightarrow\,}
+\newcommand{\ra}{\,\rightarrow\,}
+\newcommand{\lra}{\leftrightarrow}
+\newcommand{\Ra}{\;\Longrightarrow\;}
+\newcommand{\lora}{\longrightarrow}
+\newcommand{\we}{\,\wedge\,}
+\newcommand{\ve}{\,\vee \,}
+\newcommand{\bbsq}{\blacksquare\!\blacksquare}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Símbolos lógicos
+\newcommand{\mo}{\models}
+\newcommand{\lan}{\langle}
+\newcommand{\ran}{\rangle}
+\newcommand{\ap}{\approx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Letras
+\newcommand{\vep}{\varepsilon}
+\newcommand{\vph}{\varphi}
+\newcommand{\de}{\delta}
+\newcommand{\si}{\sigma}
+\newcommand{\Si}{\Sigma}
+\newcommand{\om}{\omega}
+\newcommand{\al}{\alpha}
+\newcommand{\be}{\beta}
+\newcommand{\vom}{\varOmega}
+\newcommand{\vTh}{\varTheta}
+\newcommand{\vth}{\vartheta}
+\newcommand{\vDe}{\varDelta}
+\newcommand{\wh}{\widehat}
+\newcommand{\nn}{\~n}
+\newcommand{\m}{i}
+\newcommand{\ps}{P_{\Sigma}}
+\newcommand{\psone}{P_{\Sigma^{*}}}
+\newcommand{\psoneast}{P_{\Sigma'}}
+\newcommand{\ts}{T_{\Sigma}}
+\newcommand{\dis}{\displaystyle}
+\newenvironment{variableblock}[3]{%
+  \setbeamercolor{block body}{#2}
+  \setbeamercolor{block title}{#3}
+  \begin{block}{#1}}{\end{block}}
+
+%============================================================================== 
+%==========================================================================================
+
+\title{Computaci\'on y Estructuras Discretas III}
+
+\author[Andrés A. Aristizábal P.]{Andrés A. Aristizábal P.  aaaristizabal@icesi.edu.co\\ Angela Villota  - apvillota@icesi.edu.co }
+
+\institute[Universidad ICESI]{Departamento de Computaci\'on y Sistemas Inteligentes \\
+\includegraphics[height=1.5cm]{../logoICESI2.pdf}}
+
+\date[]{\today}
+
+%==============================================================================
+\AtBeginSubsection[]{
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+    \frametitle{Agenda del día}
+    \tableofcontents[currentsubsection, 
+    hideothersubsections, 
+    sectionstyle=show/shaded, 
+    subsectionstyle=show/shaded,]
+  \end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%============================================================================== CUERPO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\setlength{\parindent}{0cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}
+ %   \titlepage
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Agenda del día}
+  \tableofcontents
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Presentación]{Presentación}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Información del curso}
+%\begin{frame}{Información del curso}
+%\begin{itemize}
+%  \item Código asignatura: 09772
+%  \item Programas: Ingeniería de Sistemas
+%  \item Intensidad semanal: 4 horas
+%  \item Apoyo al curr\'iculo central: I Plus
+%  \item Créditos: 3
+%  \item Días de clase: Martes y jueves de 16:00 - 18:00 PM
+%\end{itemize}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+\setbeamertemplate{itemize/enumerate subbody begin}{\footnotesize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Descripci\'on general del curso}
+%\begin{block}{Descripci\'on general del curso}
+%\begin{itemize}
+%\item Este curso ofrece a los estudiantes una s\'olida base en inform\'atica te\'orica y procesamiento de lenguaje. 
+%\item A trav\'es de la aplicaci\'on de expresiones regulares, teor\'ia de aut\'omatas, gram\'aticas generativas y M\'aquinas de Turing, los estudiantes explorar\'an la resoluci\'on de problemas complejos en el procesamiento de lenguaje y reconocimiento de patrones. 
+%\item El curso tiene una gran componente de aplicaci\'on pero en cada unidad se har\'a \'enfasis  en la comprensi\'on de los conceptos y las  t\'ecnicas formales que soportan cada una de las aplicaciones.  
+%\item Al finalizar el curso, los estudiantes estar\'an equipados con conocimientos te\'oricos y habilidades pr\'acticas para enfrentar desaf\'ios en la inform\'atica te\'orica y el procesamiento de lenguaje en un contexto acad\'emico y profesional.
+%\end{itemize}
+%\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Formaci\'on en competencias}
+%\begin{block}{Formaci\'on en competencias}
+%\begin{itemize}
+%\item SO-1. Soluci\'on de problemas: Identificar, formular y resolver problemas complejos de ingenier\'ia aplicando pensamiento cr\'itico y principios de las ciencias, las matem\'aticas, la ingenier\'ia y, en particular, de las Ciencias de la Computaci\'on y de la Ingenier\'ia de Software.
+%\item SO-2. Dise\~no de ingenier\'ia: Dise\~nar soluciones y procesos basados en software que satisfagan necesidades espec\'ificas y generen valor a sus usuarios, considerando la salud p\'ublica, la seguridad y el bienestar de las personas, as\'i como factores globales, culturales, sociales, ambientales y econ\'omicos.
+%\item SO-3. Comunicaci\'on efectiva: Comunicarse efectivamente de forma oral y escrita, tanto en espa\~nol como en ingl\'es.
+%\end{itemize}
+%\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Objetivo General}
+%\begin{block}{Objetivo General}
+%{\footnotesize Reconocer y aplicar apropiadamente distintos modelos computacionales de variado poder expresivo, reconociendo sus propiedades y limitaciones, para la soluci\'on de problemas asociados a lenguajes, gram\'aticas, aprendizaje autom\'atico y decidibilidad.}
+%\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Objetivos terminales}
+%%\begin{block}{Al finalizar debes estar en capacidad de...}
+%\begin{itemize}
+%  \item Aplicar las expresiones regulares y teor\'ia de aut\'omatas para resolver problemas relacionados al procesamiento de lenguaje y reconocimiento de patrones.
+%  \item Comprender y aplicar los conceptos de  gram\'aticas generativas para implementar sistemas de procesamiento de lenguajes especializados para dominios espec\'ificos o aplicaciones.
+%  \item Reconocer la importancia de simplificar gram\'aticas en sus formas normales para poder procesar y analizar lenguajes de manera eficiente.
+%  \item Dise\~nar e implementar M\'aquinas de Turing para resolver problemas computacionales, en especial aquellos relacionados con redes neuronales.
+%  \item Entender la importancia de las t\'ecnicas formales para determinar la decidibilidad de problemas computacionales utilizando M\'aquinas de Turing.
+%  \item Expresar o comunicar con el vocabulario y lenguaje adecuado/especializado las ideas principales sobre los modelos computacionales estudiados en el curso y sus aplicaciones.
+% \end{itemize}
+% \end{frame}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Estrategias Pedagógicas}
+%\begin{frame}{Estrategias pedagógicas}
+%\begin{block}{Enfoque}
+%{\footnotesize En concordancia con la misión de la Universidad, el aprendizaje de los temas de este curso será el resultado del proceso de construcción del conocimiento, adelantado por el estudiante y guiado por el  profesor. Parte fundamental de este proceso es el  aprovechamiento del estudio previo hecho por los estudiantes, como elemento generador de preguntas, discusiones y conclusiones.}
+%\end{block}
+%\end{frame}
+%{\footnotesize \begin{frame}{Estrategias pedagógicas}
+%\begin{block}{E-learning}
+%La herramienta de E-learning (moodle) es el medio que contiene la información oficial del curso y es
+%responsabilidad del estudiante consultar en ella todo lo referente al curso, especialmente las
+%actualizaciones del material, actividades y calificaciones.
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize \begin{frame}{Estrategias pedagógicas}
+%\begin{block}{Discusión} 
+%\begin{itemize}
+%\item La discusión, orientada por el profesor es el elemento central en la metodología del curso. Se fundamenta en el estudio preliminar de las secciones asignadas, en las preguntas de los estudiantes y en sus respuestas a sus preguntas y a las del profesor, que alimenten el proceso de aprendizaje activo.   
+%\item El profesor interviene esencialmente como guía y moderador de las discusiones, y se encarga de hacer la síntesis final para socializar el conocimiento consolidado en clase y de indicar al estudiante la labor que debe realizar como preparación para la clase siguiente.
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize \subsection{Desarrollo del curso}
+%\begin{frame}{Espacios}
+%\begin{block}{}
+%Este curso cuenta semanalmente con dos momentos (te\'orico-pr\'actico y pr\'actico) que son utilizados de la siguiente forma: 
+%\begin{itemize}
+%\item Te\'orico-pr\'actico: los estudiantes y el profesor se encontrarán en este espacio, en dos sesiones de una
+%hora y media en las cuales se llevará a cabo la discusión de los diferentes
+%temas y la realización de ejercicios que permitan ponerlos en práctica. 
+%\item Pr\'actico: los estudiantes, el profesor y el monitor comparten este momento para llevar a cabo los seguimientos de evaluaci\'on, la solución de problemas propuestos y su implementación en Python y las librer\'ias indicadas. Para este componente se han destinado dos horas cada 15 d\'ias.
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize
+%\begin{frame}{Espacio te\'orico-pr\'actico}
+%\begin{block}{}
+%Estructura de la sesi\'on: 
+%\begin{itemize}
+%\item Control de lectura 
+%\item Introducci\'on al tema 
+%\item Resoluci\'on de ejercicios 
+%\item Presentaci\'on del siguiente tema 
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize 
+%\begin{frame}{Espacio Pr\'actico}
+%\begin{block}{}
+%Estructura de la sesi\'on: 
+%\begin{itemize}
+%\item Seguimiento de aprendizaje 
+%\item Presentaci\'on y discusi\'on de la soluci\'on 
+%\item Resoluci\'on de dudas tarea integradora 
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Lenguaje y entorno de desarrollo}
+%\begin{block}{}
+%Este curso utilizará Python como lenguaje de programación y Jupyter notebook como entorno de desarrollo. No
+%obstante los objetivos de aprendizaje son independientes del lenguaje y el entorno de programación
+%seleccionado. 
+%\end{block}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize \subsection{Reglas de juego}
+%\begin{frame}{Reglas de juego}
+%\framesubtitle{\scriptsize Normas esperadas de comportamiento y conducta en la relación profesor-estudiante}
+%\begin{block}{Valores de la formación de la Universidad ICESI} 
+%\begin{itemize}
+%\item Invitación para asumir y mantener la actitud activa del estudiante y su responsabilidad y compromiso con su propio proceso de aprendizaje. 
+%\item Inculcar la preocupación permanente de su compromiso con el bienestar de la sociedad, de su responsabilidad social en el ejercicio de su profesión. 
+%\item El papel del profesor es ser un guía para que el estudiante construya su conocimiento, y no el responsable del aprendizaje del estudiante.
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize  \begin{frame}{Reglas de juego}
+%\framesubtitle{\scriptsize Normas esperadas de comportamiento y conducta en la relación profesor-estudiante}
+%\begin{block}{Asistencia}
+%\begin{itemize}
+%\item La lista de asistencia se utilizará como mecanismo de familiarización con los nombres de los estudiantes. 
+%\item La asistencia al curso se deja al criterio del estudiante, por lo que no se llevará control de asistencia con fines de pérdida del curso por esta causa. 
+%\item Todo estudiante que opte por no asistir a una o más sesiones de clase es responsable de ponerse al día en los temas programados y de cumplir con cualquier tipo de trabajo o tarea que se asigne. 
+%\item Las pruebas de cualquier tipo que se realicen en dichas sesiones de clase no se repetirán, y la nota respectiva para los estudiantes que no hayan asistido a las mismas, será de 0.0
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize  \begin{frame}{Reglas de juego}
+%\framesubtitle{\scriptsize Normas esperadas de comportamiento y conducta en la relación profesor-estudiante}
+%{\small \begin{block}{Ejercicios}
+%\begin{itemize}
+%\item Los	ejercicios	 prácticos	 se	 desarrollan y evalúan en	 Python,	 bajo	el	ambiente	 de	
+%desarrollo	 indicado	en	el	 programa	 del	 curso.	 
+%\item Los	enunciados	 de	 los	ejercicios	 se	 publican	 a través	de	la	herramienta	de	e-learning	Moodle	junto	con	sus	instrucciones	particulares.
+%\item Las tareas integradoras se realizar\'an en grupos de m\'inimo 2 estudiantes y m\'aximo 3 estudiantes y se entregar\'an utilizando GitHub classroom.
+%\item Las tareas se evaluar\'an teniendo en cuenta la participaci\'on de los integrantes a partir de los commits (cantidad y relevancia).
+%\end{itemize}
+%\end{block}}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize  \begin{frame}{Reglas de juego}
+%\framesubtitle{\scriptsize Normas esperadas de comportamiento y conducta en la relación profesor-estudiante}
+%{\footnotesize \begin{block}{Horas de entrega}
+%\begin{itemize}
+%\item Cada	 ejercicio	 práctico	 tiene	 explícitamente	 	 el	 día	 y	 hora	 de	 entrega	 a	 través	 de	 la	
+%herramienta	de	e-learning	Moodle.	
+%\item No	se	admiten	entregas	posteriores	a	esta	hora,	 por	lo	cual	
+%los	estudiantes	deben	prever	el	tiempo	suficiente	para	colocar	su	trabajo	con	anticipación	a	la	
+%hora	indicada.	
+%\item Es	responsabilidad	 del	estudiante	prever	posible	congestión	de	Moodle	o	de	los	
+%sistemas	de	comunicaciones	y	estar	al	tanto	de	las	condiciones	de	su	ejercicio.
+%\item
+%Así	 mismo,	 es	 responsabilidad	 del	 estudiante	 verificar	 con	 la	 suficiente	 anticipación	 que	 la	
+%entrega	corresponde	al	trabajo	que	realizó.	
+%\item No	se	admiten	trabajos	entregados	por	algún	otro	
+%medio	o	en	algún	otro	horario.
+%\end{itemize}
+%\end{block}}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize \begin{frame}{Reglas de juego}
+%\framesubtitle{\scriptsize Normas esperadas de comportamiento y conducta en la relación profesor-estudiante}
+%\begin{block}{Otras}
+%\begin{itemize}
+%\item La forma de evaluación del curso es la presentada en el primer día de clases y no es modificable.
+%\item Además de lo expuesto en este documento, se deberá tener en cuenta lo establecido en el documento del Proyecto Educativo Institucional y del Reglamento Estudiantil.
+%\item Las notas se entregan con una sola cifra decimal. 
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Contenido temático}
+%
+%\setbeamertemplate{itemize/enumerate body begin}{\scriptsize}
+%\setbeamertemplate{itemize/enumerate subbody begin}{\scriptsize}
+%
+%\begin{frame}[allowframebreaks]{Contenido}
+%\begin{enumerate}
+%\item \textbf{Lenguajes Regulares y Aut\'omatas } [6.5 sesiones]
+%\begin{itemize}
+%\item Explicar los conceptos fundamentales de alfabetos, cadenas y lenguajes. 
+%\item Definir formalmente los distintos tipos de aut\'omatas finitos (deterministas, no deterministas, no deterministas con transiciones lambda, transductores), dar ejemplos, identificar sus elementos y conocer sus aplicaciones.
+%\item Reconocer la equivalencia entre expresiones regulares y aut\'omatas finitos.
+%\item Entender y aplicar, tanto las nociones de lenguajes y expresiones regulares, como de aut\'omatas de estado finito, para el reconocimiento de patrones, procesamiento, validaci\'on y extracci\'on de texto usando un lenguaje de programaci\'on.
+%\end{itemize}
+%
+%\item \textbf{Gram\'aticas y Lenguajes} [6.5 sesiones]
+%\begin{itemize}
+%\item Definir una gram\'atica independiente del contexto y construir GICs para lenguajes dados.
+%\item Explicar el concepto de ambig\"uedad ling\"u\'istica y aplicarlo a GIC ambiguas. 
+%\item Reconocer la importancia de las formas normales para simplificar GICs.
+%\item Aplicar los conceptos de gram·\'aicas generativas para el dise\~no e implementaci\'on de DSLs usando un lenguaje de programaci\'on.
+%\item Reconocer la importancia de los distintos algoritmos de decisi\'on sobre GIC.
+%\end{itemize}
+%
+%\framebreak
+%
+%\item \textbf{M\'aquinas de Turing y Aplicaciones} [11 sesiones]
+%\begin{itemize}
+%\item Definir formalmente una M\'aquina de Turing y cada uno de sus componentes.
+%\item Construir M\'aquinas de Turing como reconocedoras de lenguajes y calculadoras de funciones usando un lenguaje de programaci\'on. 
+%\item Comprender los conceptos b\'asicos de aprendizaje autom\'atico, en especial, el procesamiento de lenguaje natural, el aprendizaje supervisado y las redes neuronales.
+%\item Aplicar los conceptos de redes neuronales recurrentes, LSTM y Redes Neuronales de Turing para resolver tareas de NLP usando un lenguaje de programaci\'on.
+%\item Codificar y enumerar M\'aquinas de Turing con el fin de establecer un marco estandarizado y riguroso para describir la estructura, comportamiento y l\'imites de los distintos dispositivos computacionales.
+%\item Reconocer la importancia de lenguajes que no son RE, RE que no son Recursivos para representar problemas complejos, explorar la computabilidad y as\'i proporcionar una base te\'orica para la teor\'ia del lenguaje formal.
+%\end{itemize}
+%\end{enumerate}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+%\setbeamertemplate{itemize/enumerate subbody begin}{\footnotesize}
+%
+%\subsection{Evaluación}
+%{\footnotesize \begin{frame}{Evaluación}
+%\begin{block}{Evaluaciones individuales}
+%El curso cuenta con 2 momentos de evaluación individual en el salón de clase:
+%\begin{itemize}
+%\item Controles de lectura y quices: corresponde a todas las comprobaciones de lectura y de aprendizaje que se hagan durante el curso. Estas comprobaciones pueden realizarse con o sin previo aviso por parte del profesor.
+%\item Seguimiento de Aprendizaje: evaluaci\'on corta durante los 30 - 60 primeros minutos del horario de la sesi\'on pr\'actica. 
+%\end{itemize}
+%\end{block}
+%\begin{block}{Evaluaciones grupales}
+%El curso cuenta con 1 momento de evaluación grupal en el salón de clase:
+%\begin{itemize}
+%\item Tareas Integradoras: durante el semestre se llevar\'an a cabo 2 Tareas Integradoras que los estudiantes deben entregar utilizando GitHub classroom. 
+%%durante las horas de laboratorio de cada grupo y  en franjas (grupos de algoritmos en simultáneo) para la tercera evaluación práctica. Los exámenes prácticos no tienen supletorio.
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{\footnotesize \begin{frame}{Evaluación}
+%\begin{block}{Porcentaje de evaluaciones}
+%\begin{tabular}{ll}
+%Tarea Integradora 1 & $20\%$ \\
+%Tarea Integradora 2 & $20\%$ \\
+%Seguimientos de Aprendizaje & $45\%$ \\
+%Controles de lectura y quices & $15\%$ 
+%\end{tabular}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Aplicaciones}
+%{\footnotesize \begin{frame}{Aplicaciones}
+%\begin{block}{Aplicaciones}
+%\begin{itemize}
+%\item Lenguajes regulares: validaci\'on de datos, data scraping, preprocesamiento de datos, data wrangling.
+%\item Aut\'omatas finitos: correctores ortogr\'aficos, editores de texto, analizadores l\'exicos.
+%\item Transductores: traductores, analizadores fonol\'ogicos y morfol\'ogicos.
+%\item Gram\'aticas libres de contexto: analizadores.
+%\item M\'aquinas de Turing: Turing neural networks.
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Bibliograf\'ia}
+%{\footnotesize \begin{frame}{Bibliograf\'ia}
+%\begin{block}{}
+%\begin{itemize}
+%\item John E. Hopcroft Rajeev Motwani Jeffrey D. Ullman. Introduction to Automata Theory, Languages, and Computation. Prentice Hall (2006)
+%\item Ralf L\"ammel. Software Languages, Syntax, Semantics, and Metaprogramming. Springer 2018 
+%\item Rodrigo de Castro. Teor\'ia de la Computaci\'on, Lenguajes, aut\'omatas, gram\'aticas (Notas de Clase). Editorial de la Universidad Nacional (2004)
+%\item Lecturas complementarias disponibles en la herramienta de E-learning (Moodle) para los estudiantes de la materia. 
+%\end{itemize}
+%\end{block}
+%\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setbeamertemplate{itemize/enumerate body begin}{\normalsize}
+
+\section[Regular languages and Automata theory]{Regular languages and Automata theory}
+\subsection{Alphabets, strings and languages}
+\begin{frame}{Alphabets, strings and languages}
+What is an alphabet? \pause
+\begin{df}
+An alphabet is a finite, noneempty set of symbols. We use the symbol $\Sigma$ to define it. \pause
+\end{df}
+Which are some examples of alphabets? \pause
+\begin{block}{}
+\begin{itemize}
+\item The binary alphabet: $\Sigma = \{0,1\}$
+\item The set of all lower case vowels: $\Sigma = \{a,e,i,o,u\}.$ 
+\item The set of all ASCII characters, or the set of all printable ASCII characters.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+What is a string? \pause
+\begin{df}
+A string or a word is a finite sequence of symbols chosen from some alphabet. \pause
+\end{df}
+Which are some examples of strings? \pause
+\begin{block}{}
+\begin{itemize}
+\item $01101$ is a string from the binary alphabet $\Sigma = \{0,1\}$
+\item $banana$ is a string from the all lower case letters` alphabet $\Sigma = \{a,b,c,...,z\}.$ 
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+\begin{ej}
+Let $\Sigma = \{a,b\}$. \\ \pause Here we have strings from $\Sigma:$ 
+\begin{center}
+\begin{tabular}{l}
+$aba$ \\ 
+$ababaaa$ \\ 
+$aaaab$ \pause
+\end{tabular}
+\end{center}
+We can see that $aba \neq aab,$ due to the fact that the order of symbols is important when dealing with strings, since strings work as sequences. 
+\end{ej}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+What is the empty string? \pause
+\begin{df}
+The empty string is the string with zero occurrences of symbols. This string is denoted by $\lambda$ or $\epsilon.$ This string may be chosen from any alphabet whatsoever. 
+\end{df}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+What about the length of a string? \pause
+\begin{block}{}
+\begin{itemize}
+\item It is useful to classify strings by their length.
+\item It is common to say that the length of a string is the number of symbols in the string.
+\item Not strictly correct. $10101$ has only two symbols but there are five positions for symbols (its length is 5).
+\item Generally expect that the number of symbols can be used when. number of positions is meant.
+\item The standard notation for the length of a string $w$ is $|w|.$
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+How could we formally define the length of a string? \pause
+\begin{df}
+\begin{center}
+\[|u|=\left\{
+\begin{array}{c l}      
+    0 & \text{if } u = \lambda \\
+    n & \text{if } u = a_1 a_2 \cdot \cdot \cdot a_n.
+\end{array}\right.\] \pause
+\end{center}
+\end{df}
+\begin{ej}
+$|aba| = 3, \, |baaa| = 4, \, |\lambda| = 0.$
+\end{ej}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+What are the powers of an alphabet? \pause
+\begin{block}{}
+\begin{itemize}
+\item Let $\Sigma$ be an alphabet. 
+\item We can express the set of all strings of a certain length from that alphabet by using an exponential notation.
+\item We define $\Sigma^k$ to be the set of strings of length $k,$ each of whose symbols is in $\Sigma.$ \pause
+\end{itemize}
+\end{block}
+\begin{ej}
+\begin{itemize}
+\item $\Sigma^0 = \{\lambda\}$ regardless of what alphabet $\Sigma$ is.
+\item If $\Sigma = \{0,1\},$ then $\Sigma^1 = \{0,1\}, \, \Sigma^2 = \{00,01,10,11\}.$ 
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+What is the Kleene star of an alphabet? \pause
+\begin{block}{}
+\begin{itemize}
+\item The set of all possible strings over an alphabet $\Sigma.$
+\item It is denoted as $\Sigma^*.$
+\item $\Sigma^* = \Sigma^0 \, \cup \, \Sigma^1 \, \cup \, \Sigma^2 \, \cdot \cdot \cdot$ \pause
+\end{itemize}
+\end{block}
+\begin{ej}
+\begin{itemize}
+\item If $\Sigma = \{0,1\},$ then $\Sigma^* = \{\lambda,0,1,00,01,10,11,000,...\}.$ 
+\end{itemize}
+\end{ej}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+What is the positive closure of an alphabet? \pause
+\begin{block}{}
+\begin{itemize}
+\item The set of all possible strings over an alphabet $\Sigma$ without the empty string.
+\item It is denoted as $\Sigma^+.$
+\item $\Sigma^+ = \Sigma^1 \, \cup \, \Sigma^2 \, \cup \, \Sigma^3 \, \cup \, \cdot \cdot \cdot$ \pause
+\end{itemize}
+\end{block}
+\begin{ej}
+\begin{itemize}
+\item If $\Sigma = \{0,1\},$ then $\Sigma^* = \{0,1,00,01,10,11,000,...\}.$ 
+\end{itemize}
+\end{ej}
+\end{frame}
+
+%%%%%%%%%%%%
+\begin{frame}{Alphabets, strings and languages}
+What is string concatenation? \pause
+\begin{df}
+Given an alphabet $\Sigma$ and two strings $u,v \pertenece \Sigma^*,$ the concatenation of $u$ and $v$ is expressed as $u \cdot v$ or simply $u v.$  \pause We can define it as  \pause If $u,v \pertenece \Sigma^*, \, a \pertenece \Sigma,$ then \pause
+\begin{enumerate}
+\item $u \cdot \lambda = \lambda \cdot u = u$ \pause
+\item $u \cdot (v a) = (u \cdot v) a$
+\end{enumerate}
+\end{df}
+\end{frame}
+
+\begin{frame}{Alphabets, strings and languages}
+What is the reverse or inverse of a string? \pause
+\begin{df}
+The reverse or inverse of a string $u \pertenece \Sigma^*$ is expressed as $u^R$ and defined as: \pause
+\begin{center}
+\[u^R=\left\{
+\begin{array}{c l}      
+    \lambda & \text{if } u = \lambda \\
+    a_n \cdot \cdot \cdot a_2 a_1 & \text{if } u = a_1 a_2 \cdot \cdot \cdot a_n.
+\end{array}\right.\] 
+\end{center}
+\end{df}
+\end{frame}
+%%%%%%%%%%%%
+{\footnotesize \begin{frame}{Alphabets, strings and languages}
+What is a substring? \pause
+\begin{df}
+A string $v$ is a substring or subword of $u$ if there exist strings $x, \, y$ such that $u = xvy.$ Let's point out that $x$ or $y$ might be $\lambda$ and therefore, the empty string is a substring of any string and any string is a substring of itself. \pause
+\end{df}
+What is a prefix? \pause
+\begin{df}
+A prefix of $u$ is a string $v$ such that $u = v w$ for any string $w \pertenece \Sigma^*.$ We say that $v$ is a proper prefix if $v \neq u.$ \pause
+\end{df}
+What is a suffix? \pause
+\begin{df}
+A suffix of $u$ is a string $v$ such that $u = w v$ for any string $w \pertenece \Sigma^*.$ We say that $v$ is a proper suffix if $v \neq u.$ 
+\end{df}
+\end{frame}}
+
+{\footnotesize \begin{frame}{Alphabets, strings and languages}
+See that $\lambda$ is a prefix and suffix of $u$ since $u \lambda = \lambda u = u.$ By the same reasoning $u$ is a prefix and suffix of itself. \pause
+\begin{ej}
+Given $\Sigma = \{a,d,c,d\}$ and $u = bcbaadb.$
+\begin{center}
+\begin{tabular}{rr}
+Prefixes of $u:$ & Suffixes of $u:$ \\
+$\lambda$ & $\lambda$ \\
+$b$ & $b$ \\
+$bc$ & $db$ \\
+$bcb$ & $adb$ \\
+$bcba$ & $aadb$ \\
+$bcbaa$ & $baadb$ \\
+$bcbaaad$ & $cbaadb$ \\
+$bcbaadb$ & $bcbaadb$ 
+\end{tabular}
+\end{center}
+\end{ej}
+\end{frame}}
+%%%%%%%%%%%%
+\begin{frame}{Alphabets, strings and languages}
+What is a language? \pause
+\begin{df}
+A language $L$ over an alphabet $\Sigma$ is a subset of $\Sigma^*,$ that is $L \subseteq \Sigma^*$ \\ \pause
+Border cases:
+\begin{center}
+\begin{tabular}{ll}
+$L = \emptyset,$ & the empty language. \\
+$L = \Sigma^*,$ & the language of every string over $\Sigma.$ \pause
+\end{tabular}
+\end{center}
+\end{df}
+Any language $L$ fulfills $\emptyset \subseteq L \subseteq \Sigma^*,$ and it can be either finite or infinite. We represent languages with upper case letters $A, \, B, \, C,...,L, \, M, \, N,...$
+\end{frame}
+%%%%%%%%%%%%%
+\begin{frame}{Alphabets, strings and languages}
+\begin{ej}
+The following are examples of languages over given alphabets. \pause
+\begin{itemize}
+\item $\Sigma = \{a,b,c\}.$ $L=\{a,aba,aca\}.$ \pause
+\item $\Sigma = \{a,b,c\}.$ $L=\{a,aa,aaa,...\} = \{a^n \talque n \geq 1\}.$ \pause
+\item $\Sigma = \{a,b,c\}.$ $L=\{\lambda,aa,aba,ab^2a,ab^3a,...\}=$ $\{ab^na \talque n \geq 0\} \cup \{\lambda\}.$ 
+\end{itemize}
+\end{ej}
+\end{frame}
+%%%%%%%%%%%%%
+{\footnotesize\begin{frame}{Alphabets, strings and languages}
+Which are the operations between languages? \pause
+\begin{df}
+Since languages over $\Sigma$ are subsets of $\Sigma^*,$ the usual operations between sets are also valid operations between languages. Thení, if $A$ and $B$ are languages over $\Sigma$ ($A, \, B \subseteq \Sigma^*$), then the following are also languages over $\Sigma:$
+\begin{center}
+\begin{tabular}{ll}
+$A \cup B$ & Union \pause \\
+$A \cap B$ & Intersection \pause \\
+$A-B$ & Diference \pause \\
+$\overline{A} = \Sigma^*-A$ & Complement \pause
+\end{tabular}
+\end{center}
+\end{df}
+These operations between languages are called boolean operations in order to differentiate them from the linguistic operations, which are extensions to the languages of the operations between strings.
+\end{frame}}
+%%%%%%%%%%%%%
+\begin{frame}{Alphabets, strings and languages}
+What is the concatenation between languages? \pause
+\begin{df}
+The concatenation of two languages $A$ and $B$ over $\Sigma,$ represented as $A \cdot B$ or simply $A B$ is defined as: \pause
+\[A B = \{u v \talque u \pertenece A, \, v \pertenece B\}\] \pause
+In general, $A B \neq B A$
+\end{df}
+\end{frame}
+
+\setbeamertemplate{itemize/enumerate body begin}{\footnotesize}
+
+%%%%%%%%%%%%%
+{\scriptsize \begin{frame}{Alphabets, strings and languages}
+Which are the properties of concatenation of languages? \pause
+\begin{df}
+Given languages $A, B, C$ over $\Sigma,$ i.e.  $A, \, B, \, C \subseteq \Sigma^*.$ Then \pause
+\begin{enumerate}
+\item $A \cdot \emptyset = \emptyset \cdot A = \emptyset.$ \pause
+\item $A \cdot \{\lambda\} = \{\lambda\} \cdot A = A.$ \pause
+\item Associative property,
+\begin{center}
+$A \cdot (B \cdot C) = (A \cdot B) \cdot C.$
+\end{center} \pause
+\item Distributivity of concatenation with respect to union,
+\begin{center}
+$A \cdot (B \cup C) = A \cdot B \cup A \cdot C.$ \\
+$(B \cup C) \cdot A = B \cdot A \cup C \cdot A.$ 
+\end{center} \pause
+\item Generalized distributivity property. If $\{B_i\}_{i \pertenece I}$ is any family of languages over $\Sigma,$ then
+\begin{center}
+$A \cdot \bigcup\limits_{i \pertenece I} B_i = \bigcup\limits_{i \pertenece I} (A \cdot B_i),$ \\
+$\Big( \bigcup\limits_{i \pertenece I} B_i\Big) \cdot A = \bigcup\limits_{i \pertenece I} (B_i \cdot A).$ 
+\end{center} 
+\end{enumerate}
+\end{df}
+\end{frame}}
+
+\subsection{Exercises}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\begin{frame}{Exercises}
+\begin{ejer}
+Given $\Sigma = \{a,b,c, d\}$ define $\Sigma^*$
+\end{ejer}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\begin{frame}{Exercises}
+\begin{ejer}
+Given $u \pertenece \Sigma^*$ and $n \pertenece \mathbb{N},$ give a recursive definition of $u^n.$
+\end{ejer}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\begin{frame}{Exercises}
+\begin{ejer}
+Given $u \pertenece \Sigma^*$ and $a \pertenece \Sigma$ give a recursive definition of $|u|.$
+\end{ejer}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\begin{frame}{Exercises}
+\begin{ejer}
+Given $u \pertenece \Sigma^*$ and $a \pertenece \Sigma$ give a recursive definition of $u^R.$
+\end{ejer}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\begin{frame}{Exercises}
+\begin{ejer}
+If $u,v \pertenece \Sigma^*,$ show that $(u v)^R = v^R u^R.$ 
+\end{ejer}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\begin{frame}{Exercises}
+\begin{ejer}
+Show that $A \cdot (B \cdot C) = (A \cdot B) \cdot C.$
+\end{ejer}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\begin{frame}{Exercises}
+\begin{ejer}
+Show that $A \cdot \{\lambda\} = \{\lambda\} \cdot A = A.$
+\end{ejer}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+{\begin{frame}{Exercises}
+\begin{ejer}
+Show that $A \cdot \emptyset = \emptyset \cdot A = \emptyset.$
+\end{ejer}
+\end{frame}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

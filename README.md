@@ -1,28 +1,73 @@
-# Computación y Estructuras Discretas 3  
-**Universidad Icesi**
-This repository contains the Jupyter notebooks used in the course **Computación y Estructuras Discretas 3** at Universidad Icesi.  
-The notebooks include tutorials and worked examples that complement the topics covered in class.  
-They are updated weekly throughout the semester.
+---
+# Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+# Licensed under the PolyForm Noncommercial License 1.0.0.
+# Commercial use is prohibited without prior written authorization.
+title: Computación y Estructuras Discretas III
+---
+
+**Universidad Icesi · Departamento de Computación y Sistemas Inteligentes**
+
+**Author and compiler:** Angela Villota ·
+[apvillota@icesi.edu.co](mailto:apvillota@icesi.edu.co)
+
+## Presentation
+
+This interactive book brings together the study material for **Computación y
+Estructuras Discretas III**. It combines conceptual explanations, worked
+examples, executable notebooks, and practice activities to support independent
+study and classroom work.
+
+The material is organized progressively throughout the semester. Markdown pages
+develop the theory in a readable format, while Jupyter notebooks let students
+run code, change examples, test conjectures, and solve computational problems.
+
+## How to use this book
+
+For each session:
+
+1. Read the study page and reproduce the worked examples.
+2. Complete the practice set before opening its hints.
+3. Run the associated notebook when the topic includes programming.
+4. Use the readiness checklist to identify concepts that need review.
+5. Return to the evaluation-preparation material before assessments.
 
 ## Preliminary work in Python
-This folder contains notebooks suggested for students to review and reinforce their Python knowledge applicable to this course.
-* [Intro to Python](./Preliminary/IntroAPython.ipynb) This is a small notebook for an introductory overview.
-* [Python Class](https://developers.google.com/edu/python) The course content is based on Google's internal intensive 2-day Python training program.
-* [Intro to NumPy](./Preliminary/Tutorial_Numpy.ipynb)
-* [Pandas Tutorial](https://github.com/angievig/Pandas-Tutorial/tree/master)
+
+Follow the preparation pathway in order:
+
+* [Preparation overview and readiness check](./Preliminary/index.md)
+* [Executable Python foundations notebook](./Preliminary/python-foundations.ipynb)
+* [Executable NumPy foundations notebook](./Preliminary/numpy-foundations.ipynb)
 
 ## Week 1
-This week, the practical session was delivered by Prof. Andres Aristizabal via Zoom. The assignment for the practical class is the following notebook: 
-* [Regular Expressions Notebook](./Week1/RegExExercises.ipynb) This notebook contains many problems and some solutions
+
+### Session 1 — Alphabets, strings, and languages
+
+Begin with the rewritten study material, then use the practice set to prepare
+for the next session:
+
+* [Study material: Alphabets, strings, and languages](./Week1/S1/index.md)
+* [Practice set with progressive hints](./Week1/S1/exercises.md)
+
+### Session 2 — Regular languages and regular expressions
+
+Continue from language operations to formal regular expressions and executable
+Python practice:
+
+* [Study material: Regular languages and regular expressions](./Week1/S2/index.md)
+* [Practice set with progressive hints](./Week1/S2/exercises.md)
+* [Executable Python regex notebook](./Week1/S2/regex-python.ipynb)
 
 ## Week 2
 
-**Session 1**
+Week 2 connects regular expressions with finite automata and provides guided
+preparation for upcoming evaluations.
 
-We reviewed the concepts of regular expressions and their relation to regular languages.  Also, the lecture included an introduction to Automata theory.  The notebooks for this lecture are the following:
-* [**Solution** to the Regular Expressions Notebook](./Week2/SolRegExExercises.ipynb). Solution for the previous exercise.
-* [Previous Follow-up](./Week2/CyEDIII_Seguimiento1_25-2_G1.ipynb).  This notebook contains the problems assigned in the previous term.
-* [Follow-up 2026-1](./Week2/CyEDIII_Seguimiento1_26_1_G5.ipynb)
+* [Week 2 overview](./Week2/index.md)
+* [Study material: Deterministic and nondeterministic finite automata](./Week2/S3/index.md)
+* [Automata practice set with progressive hints](./Week2/S3/exercises.md)
+* [Evaluation-preparation overview](./Week2/SeguimientosAnteriores/index.md)
+* [Guided regular-expression evaluation notebook](./Week2/SeguimientosAnteriores/regex-evaluation-prep.ipynb)
 
 ## Week 3
 **Session 1**
@@ -65,4 +110,3 @@ In this session, we worked with Grammars, we studied the general concept and spe
 This is a more practical session, the plan is to solve the exercises and provide an implementation using `pyformlang`
 
 - [Material](./Week5/CFG.ipynb) 
-

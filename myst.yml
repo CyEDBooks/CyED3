@@ -1,9 +1,13 @@
+# Copyright (c) 2026 Angela Villota, and collaborators from the CyED block
+# Licensed under the PolyForm Noncommercial License 1.0.0.
+# Commercial use is prohibited without prior written authorization.
+
 # See docs at: https://mystmd.org/guide/frontmatter
 version: 1
 project:
   id: c76d1b0d-663b-4106-8bc4-c7926e2040b4
-  title: Computacion y Estructuras Discretas 3
-  description: Notebooks and course materials for Computacion y Estructuras Discretas 3 at Universidad Icesi.
+  title: Computación y Estructuras Discretas III
+  description: "Material interactivo y reproducible para el curso Computación y Estructuras Discretas III de la Universidad Icesi."
   keywords:
     - computacion
     - estructuras discretas
@@ -14,6 +18,56 @@ project:
   authors:
     - name: Angela Villota
       affiliation: Universidad Icesi
+    - name: Andrés Aristizabal
+      affiliation: Universidad Icesi
+  toc:
+    - file: README.md
+      title: Course home
+    - title: Python preparation
+      children:
+        - file: Preliminary/index.md
+          title: Preparation overview
+        - file: Preliminary/python-foundations.ipynb
+          title: Python foundations
+        - file: Preliminary/numpy-foundations.ipynb
+          title: NumPy foundations
+    - title: Week 1
+      children:
+        - file: Week1/S1/index.md
+          title: S1 · Alphabets, strings, and languages
+        - file: Week1/S1/exercises.md
+          title: S1 · Practice
+        - file: Week1/S2/index.md
+          title: S2 · Regular languages and expressions
+        - file: Week1/S2/exercises.md
+          title: S2 · Practice
+        - file: Week1/S2/regex-python.ipynb
+          title: S2 · Regex in Python
+    - file: Week2/index.md
+      title: Week 2
+      children:
+        - file: Week2/S3/index.md
+          title: S3 · Finite automata
+        - file: Week2/S3/exercises.md
+          title: S3 · Practice
+        - file: Week2/SeguimientosAnteriores/index.md
+          title: Evaluation preparation
+        - file: Week2/SeguimientosAnteriores/regex-evaluation-prep.ipynb
+          title: Guided evaluation notebook
+    - title: Week 3
+      children:
+        - file: Week3/AutomataImplementation.ipynb
+          title: Automata implementation
+        - file: Week3/problem.md
+          title: Applied problem
+    - title: Week 4
+      children:
+        - file: Week4/Transducers.ipynb
+          title: Transducers
+    - title: Week 5
+      children:
+        - file: Week5/CFG.ipynb
+          title: Context-free grammars
   github: https://github.com/angievig/CyED3
   jupyter:
     binder:
@@ -25,8 +79,11 @@ site:
   options:
     logo: _static/icesi-logo.svg
     logo_dark: _static/icesi-logo-dark.svg
-    logo_text: CyED3
+    logo_text: Computación y Estructuras Discretas III
     logo_url: https://www.icesi.edu.co/
     logo_alt: Universidad Icesi
     style: _static/icesi.css
     folders: true
+    # Keep authors in the project metadata without repeating the author and
+    # affiliation panel at the top of every study page.
+    hide_authors: true
