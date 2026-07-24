@@ -68,10 +68,10 @@ project:
       children:
         - file: Week5/CFG.ipynb
           title: Context-free grammars
-  github: https://github.com/angievig/CyED3
+  github: https://github.com/CyEDBooks/CyED3
   jupyter:
     binder:
-      repo: angievig/CyED3
+      repo: CyEDBooks/CyED3
       ref: main
   # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
 site:
