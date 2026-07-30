@@ -53,6 +53,55 @@ The exponent counts how many strings from $A$ are concatenated. It does not
 usually equal the length of the resulting strings because members of $A$ may
 have different lengths.
 
+### Example: computing a power
+
+Compute $A^3$ for $A=\{ab,b\}$.
+
+:::{dropdown} Answer
+$$
+A^3=A\cdot A\cdot A\cdot A^0=\{ab,b\}\{ab,b\}\{ab,b\}\{\varepsilon\}.
+$$
+
+First, $A^2=\{ab,b\}\{ab,b\}=\{abab,abb,bab,bb\}$. Then,
+
+$$
+A^3=\{ab,b\}\cdot\{abab,abb,bab,bb\}
+=\{ababab,abbab,ababb,abbb,babab,bbab,babb,bbb\}.
+$$
+:::
+
+### Exercises: powers of a language
+
+Given $A=\{ab,ca,ad\}$:
+
+1. Is $abcaab\in A^3$?
+2. Is $adca\in A^2$?
+3. Is $caba\in A^2$?
+4. Is $abcaaa\in A^3$?
+5. Is $adcaab\in A^3$?
+
+:::{dropdown} Answers
+1. Yes.
+2. Yes.
+3. No.
+4. No.
+5. Yes.
+:::
+
+Given $A=\{ab,c,ac\}$:
+
+1. Is $accab\in A^3$?
+2. Is $abacca\in A^3$?
+3. Is $abcc\in A^3$?
+4. Is $abcba\in A^3$?
+
+:::{dropdown} Answers
+1. Yes.
+2. No.
+3. Yes.
+4. No.
+:::
+
 ## 2. Kleene and positive closure
 
 The **Kleene closure** of $A$ contains all finite concatenations of members of
@@ -110,6 +159,64 @@ $$
 
 For $B=\{\varepsilon,a\}$, however, both $B^*$ and $B^+$ contain
 $\varepsilon$.
+
+### Example: computing $A^*$
+
+Let $A=\{a,ab\}$. Compute $A^*$.
+
+:::{dropdown} Answer
+- $A^0=\{\varepsilon\}$
+- $A^1=\{a,ab\}$
+- $A^2=\{aa,aab,aba,abab\}$
+- $\ldots$
+
+$$
+A^*=\{\varepsilon,a,ab,aa,aab,aba,abab,\ldots\}.
+$$
+:::
+
+### $A^*$ versus $\Sigma^*$
+
+Let $A=\{a,ab\}$ be defined over $\Sigma=\{a,b\}$. What relationship holds
+between $A^*$ and $\Sigma^*$? Compute $\Sigma^*$ over $\Sigma=\{a,b\}$ and
+compare it with $A^*$.
+
+:::{dropdown} Answer
+$$
+A^*=\{\varepsilon,a,ab,aa,aab,aba,abab,\ldots\},
+\qquad
+\Sigma^*=\{\varepsilon,a,b,aa,ab,ba,bb,aaa,aab,aba,\ldots\}.
+$$
+
+$\Sigma^*$ is defined over the alphabet: it contains every string that can be
+formed from the symbols of $\Sigma$. $A^*$ is defined over a language $A$: it
+contains every possible concatenation of members of $A$. In general,
+
+$$
+A^*\subseteq\Sigma^*.
+$$
+:::
+
+### Exercises: closures
+
+1. Let $A=\{a,b,ab\}$. Show $A^*$ and $A^+$. Is $abba\in A^*$? Is
+   $bbaa\in A^*$?
+2. Let $A=\{a,aa,ac\}$ and $B=\{b,ba\}$. Show $A\cdot B$, $B\cdot A$, and
+   $B^*$.
+3. Let $A=\{a\}$. Show $A^*$.
+
+:::{dropdown} Answers
+1. $A^*=A^0\cup A^1\cup A^2\cup\ldots
+   =\{\varepsilon\}\cup\{a,b,ab\}\cup\{aa,ab,aab,ba,bb,bab,aba,abb,abab\}\cup\ldots
+   =\{\varepsilon,a,b,ab,aa,aab,ba,bb,bab,aba,abb,abab,\ldots\}$.
+   $A^+=A^1\cup A^2\cup\ldots
+   =\{a,b,ab\}\cup\{aa,ab,aab,ba,bb,bab,aba,abb,abab\}\cup\ldots
+   =\{a,b,ab,aa,aab,ba,bb,bab,aba,abb,abab,\ldots\}$.
+2. $A\cdot B=\{ab,aba,aab,aaba,acb,acba\}$.
+   $B\cdot A=\{ba,baa,bac,baaa,baac\}$.
+   $B^*=\{\varepsilon,b,ba,bba,bab,bbba,babb,\ldots\}$.
+3. $A^*=\{\varepsilon,a,aa,aaa,aaaa,aaaaa,\ldots\}$.
+:::
 
 ## 3. Reversal of a language
 
@@ -351,6 +458,40 @@ digits, extra separators, leading spaces, and text after the number.
 6. Designing only from valid examples and never testing near misses.
 7. Assuming `\d` means only ASCII digits; in Python it is Unicode-aware unless
    restricted explicitly.
+
+## 11. Exercises: describing languages
+
+For each language below, list a few strings that belong to it, state whether
+the empty string $\varepsilon$ belongs, and describe in words the kind of
+strings it contains.
+
+1. $L_1=\{w_1cw_2\mid |w_1|=|w_2|\text{ where }w_1,w_2\in\Sigma^*\text{ with }\Sigma=\{a,b\}\}$
+2. $L_2=\{a^nb^m\mid n\neq m,\ n,m\geq0\}$
+3. $L_3=\{a^nb^{2n}c^n\mid n\geq0\}$
+
+:::{dropdown} Answers
+1. For example, $aca$, $acb$, $bca$, $abbbabcaaaaaa$. In general, strings that
+   have a $c$ in the middle such that the substrings on either side have the
+   same length. $\varepsilon\notin L_1$.
+2. For example, $abb$, $aab$, $aabbb$, $aaabb$. In general, strings with a
+   different number of $a$'s than $b$'s, where the $a$'s appear to the left of
+   the $b$'s. $\varepsilon\notin L_2$.
+3. For example, $abbc$, $aabbbbcc$, $aaabbbbbbccc$. In general, strings with
+   twice as many $b$'s as $a$'s and $c$'s, where the $a$'s, then the $b$'s,
+   then the $c$'s appear from left to right. $\varepsilon\in L_3$.
+:::
+
+Now express each language description formally:
+
+1. $L_1$ is the set of strings from the universal language of $\Sigma=\{a,b,c\}$
+   that start with $a$ and end with $a$.
+2. $L_2$ is the set of strings with even length defined over the universal
+   language of $\Sigma=\{a,b\}$.
+
+:::{dropdown} Answers
+1. $L_1=\{aw_1a\mid w_1\in\Sigma^*\text{ with }\Sigma=\{a,b,c\}\}$.
+2. $L_2=\{w_i\mid |w_i|=2k\text{ for some }k\geq1,\ w_i\in\Sigma^*\text{ with }\Sigma=\{a,b\}\}$.
+:::
 
 ## Session summary
 
