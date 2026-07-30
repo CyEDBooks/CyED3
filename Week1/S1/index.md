@@ -41,6 +41,8 @@ Examples include:
 | Alphabet | Meaning |
 |---|---|
 | $\Sigma=\{0,1\}$ | Binary symbols |
+| $\Sigma=\{0,1,2,3,4,5,6,7,8,9\}$ | Decimal digits |
+| $\Sigma=\{a,b\}$ | Two-symbol alphabet used throughout this course |
 | $\Sigma=\{a,e,i,o,u\}$ | Lowercase vowels |
 | $\Sigma=\{A,C,G,T\}$ | DNA bases |
 | Printable ASCII characters | Symbols commonly used in plain text |
@@ -48,6 +50,11 @@ Examples include:
 The members of an alphabet do not need to be letters. They may be digits,
 punctuation marks, tokens, or any other objects we agree to treat as indivisible
 symbols.
+
+Two larger alphabets that will come up in examples throughout this book:
+
+- Latin alphabet: $\Sigma=\{a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z\}$
+- Greek alphabet (abbreviated): $\Sigma=\{\alpha,\beta,\gamma,\delta,\epsilon,\ldots,\Psi,\Omega\}$
 
 :::{important}
 An alphabet is a **set**, so order and repetition do not matter. For example,
@@ -81,6 +88,27 @@ $$
 
 are strings over $\Sigma$. The strings $aba$ and $aab$ are different because
 their symbols occur in a different order.
+
+:::{note} A string need not carry meaning
+Given the Spanish alphabet $\Sigma=\{a,b,c,\ldots,z\}$, we can form strings such
+as
+
+$$
+\text{colina},\qquad \text{puente},\qquad \text{dardo},\qquad \text{fdkfjk}.
+$$
+
+The first three happen to be real Spanish words; the last one is not. All four
+are equally valid strings over $\Sigma$, because the **notion of a string has
+no associated semantics** — a string is simply a sequence of symbols, not a
+meaningful unit of a natural language.
+:::
+
+More examples, over two different alphabets:
+
+- If $\Sigma=\{0,1,2,3,4,5,6,7,8,9\}$, then $431$, $021$, and $\varepsilon$ are
+  strings over $\Sigma$.
+- If $\Sigma=\{a,b\}$, then $ab$, $ba$, $aaab$, and $\varepsilon$ are strings
+  over $\Sigma$.
 
 The statement $w\in\Sigma^*$ means that $w$ is a string over $\Sigma$. We will
 define $\Sigma^*$ formally in a later section.
@@ -165,6 +193,22 @@ $$
 
 Every member of $\Sigma^*$ is finite, although $\Sigma^*$ itself is usually an
 infinite set.
+
+$\Sigma^*$ is also known as the **universal language** over $\Sigma$, since it
+contains every string that can possibly be formed from the symbols of $\Sigma$.
+For example:
+
+- For $\Sigma=\{a,b,c\}$,
+  $$
+  \Sigma^*=\{\varepsilon,a,b,c,aa,ab,ac,ba,bb,bc,\ldots\}.
+  $$
+- For $\Sigma=\{1\}$,
+  $$
+  \Sigma^*=\{\varepsilon,1,11,111,1111,\ldots\}.
+  $$
+
+In both cases, $\varepsilon$ belongs to $\Sigma^*$ (it can be obtained from any
+alphabet), and $\Sigma^*$ is infinite because $\Sigma$ is never empty.
 
 ### Positive closure
 
@@ -300,6 +344,14 @@ $$
 L\subseteq\Sigma^*.
 $$
 
+Languages can also be described in words rather than by an explicit formula.
+Over $\Sigma=\{a,b\}$, consider:
+
+- $L_1$: the set of strings that have exactly $3$ symbols.
+- $L_2$: the set of strings that have at least one $a$.
+- $L_3$: the set of strings that have an even number of symbols.
+- $L_4$: the set of all possible strings.
+
 A language may be finite or infinite. Examples over $\Sigma=\{a,b,c\}$ include:
 
 $$
@@ -333,6 +385,17 @@ E=\{w\in\Sigma^*\mid |w|\text{ is even}\}
 $$
 
 describes the infinite language of all even-length binary strings.
+
+### More examples of languages
+
+- Over $\Sigma=\{a\}$: $L=\{a,aa,aaa,aaaa,\ldots\}=\{a^n\mid n\geq1\}$, the
+  strings of one or more $a$'s.
+- Over $\Sigma=\{a,b\}$: $L=\{ab,aabb,aaabbb,\ldots\}=\{a^nb^n\mid n\geq1\}$,
+  the strings with the same number of $a$'s as $b$'s, where all the $a$'s
+  appear to the left of the $b$'s.
+- Over $\Sigma=\{0,1\}$:
+  $L=\{\varepsilon,01,10,0011,0101,1100,1001,\ldots\}=\{w\in\{0,1\}^*\mid
+  w\text{ has the same number of }0\text{'s as }1\text{'s}\}$.
 
 ## 7. Operations on languages
 
@@ -370,6 +433,13 @@ BA=\{ba,bab,baa,baab\},
 $$
 
 so $AB\neq BA$ in this example.
+
+Here is a second example. If $A=\{a,ab,ac\}$ and $B=\{b,b^2\}=\{b,bb\}$, pairing
+every string in $A$ with every string in $B$ and removing duplicates gives
+
+$$
+AB=\{ab,abb,abbb,acb,acbb\}.
+$$
 
 Language concatenation satisfies several useful laws:
 
