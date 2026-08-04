@@ -39,6 +39,8 @@ project:
           title: S1 · Practice
         - file: Week1/S2/index.md
           title: S2 · Regular languages and expressions
+        - file: Week1/S2/summary-examples.md
+          title: S2 · Summary and examples
         - file: Week1/S2/exercises.md
           title: S2 · Practice
         - file: Week1/S2/regex-python.ipynb
@@ -46,6 +48,8 @@ project:
     - file: Week2/index.md
       title: Week 2
       children:
+        - file: Week2/S1/summary-examples.md
+          title: S1 · Summary and examples
         - file: Week2/S3/index.md
           title: S3 · Finite automata
         - file: Week2/S3/exercises.md
