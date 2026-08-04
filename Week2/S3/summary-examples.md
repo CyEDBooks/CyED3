@@ -1,5 +1,5 @@
 ---
-title: "Session 1: Summary and Examples"
+title: "Session 3: Summary and Concepts"
 ---
 
 <!--
@@ -8,14 +8,14 @@ Licensed under the PolyForm Noncommercial License 1.0.0.
 Commercial use is prohibited without prior written authorization.
 -->
 
-# Finite state machines (automata) — summary and examples
+# Finite state machines (automata) — summary and concepts
 
 This page consolidates the lecture-slide walkthrough on finite automata,
 including the transition-diagram images used in class. It follows the same
 worked examples used in the slides, with every intermediate question and its
 answer shown together. The slides use $T$ for the set of accepting states;
-[Session 3](../S3/index.md) uses $F$ for the same idea — both notations refer
-to the same component of the automaton.
+the [session narrative](index.md) uses $F$ for the same idea — both notations
+refer to the same component of the automaton.
 
 ## 1. Finite automata and regular languages
 
@@ -413,6 +413,6 @@ Business Media. Lectures 3–5.
 
 ---
 
-Continue with [Session 3 — deterministic and nondeterministic finite
-automata](../S3/index.md) and its [practice set](../S3/exercises.md) for the
-formal definitions, $\delta^*$, and $\varepsilon$-closures.
+Continue with the [session narrative](index.md) for the formal definitions,
+$\delta^*$, and $\varepsilon$-closures, then work through the
+[practice set](exercises.md).
