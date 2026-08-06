@@ -19,6 +19,15 @@ includes an evaluation-preparation track based on previous activities.
 2. Complete the [automata practice set](S3/exercises.md).
 3. Use the readiness checklist to identify concepts that need review.
 
+## Session 4 — Regex in Python, in depth
+
+[Summary and concepts](S4/regex-python-summary.ipynb) revisits the Python
+`re` material from Session 2 with step-by-step, executable examples focused
+on the constructs that usually need the most practice: character classes
+`[...]`, capturing groups, `()` grouping vs. capturing, and backreferences
+`\1`, `\2`, `\3`, ... Every concept ends with an exercise and a collapsed
+solution.
+
 ## Prepare for upcoming evaluations
 
 The [evaluation-preparation area](SeguimientosAnteriores/index.md) reorganizes

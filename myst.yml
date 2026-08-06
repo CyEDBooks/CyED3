@@ -54,6 +54,8 @@ project:
           title: S3 · Summary and concepts
         - file: Week2/S3/exercises.md
           title: S3 · Practice
+        - file: Week2/S4/regex-python-summary.ipynb
+          title: S4 · Summary and concepts (Regex in Python)
         - file: Week2/SeguimientosAnteriores/index.md
           title: Evaluation preparation
         - file: Week2/SeguimientosAnteriores/regex-evaluation-prep.ipynb
