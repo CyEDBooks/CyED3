@@ -21,16 +21,13 @@ includes an evaluation-preparation track based on previous activities.
 
 ## Session 4 — Regex in Python, in depth
 
-1. Read [Summary and concepts](S4/summary-examples.md) for the worked
-   examples and their output, laid out as a single reference.
-2. Work through the [executable notebook](S4/regex-python-summary.ipynb) to
-   run the same examples interactively.
-
-Both revisit the Python `re` material from Session 2 with step-by-step
-examples focused on the constructs that usually need the most practice:
-character classes `[...]`, capturing groups, `()` grouping vs. capturing,
-and backreferences `\1`, `\2`, `\3`, ... Every concept ends with an exercise
-and a collapsed solution.
+[Summary and concepts](S4/summary-examples.md) revisits the Python `re`
+material from Session 2 with step-by-step examples focused on the
+constructs that usually need the most practice: character classes `[...]`,
+capturing groups, `()` grouping vs. capturing, and backreferences `\1`,
+`\2`, `\3`, ... Every concept ends with an exercise and a collapsed
+solution. The same examples are also available as an
+[executable notebook](S4/regex-python-summary.ipynb) to run interactively.
 
 ## Prepare for upcoming evaluations
 
