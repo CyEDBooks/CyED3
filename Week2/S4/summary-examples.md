@@ -522,7 +522,158 @@ whitespace. `re.IGNORECASE` makes the *comparison* case-insensitive, but
 the `\w+` sub-pattern, it just checks the literal text again.
 :::
 
-## 5. Putting it together: classes + groups + backreferences
+## 5. `[]` vs `()`: uses, applications, and differences
+
+Both `[]` and `()` are delimiters, but they answer completely different
+questions. `[]` (Section 1) answers "which **single character** is allowed
+here?" `()` (Sections 2–4) answers "which **sequence** of characters counts
+as one unit, and do I need that text back afterward?" Mixing them up is one
+of the most common regex bugs, so it is worth contrasting them directly.
+
+### 5.1 What each one matches
+
+A character class always consumes **exactly one character**, no matter how
+many alternatives are listed inside it. A group can match **a sequence of
+any length**, including the empty string, because it wraps a whole
+sub-pattern rather than a set of single characters.
+
+```python
+print(re.fullmatch(r"[ab]", "ab"))
+print(re.fullmatch(r"(ab)", "ab"))
+
+# None
+# <re.Match object; span=(0, 2), match='ab'>
+```
+
+`[ab]` can never match the two-character string `"ab"` — it only ever
+consumes one `a` or one `b`. `(ab)` matches `"ab"` because the parentheses
+group the literal two-character sequence `a` followed by `b`.
+
+### 5.2 What a quantifier or `|` applies to
+
+A quantifier placed after `[]` repeats the **class**, picking a possibly
+different member of the set on each repetition. A quantifier placed after
+`()` repeats the **entire enclosed sub-pattern**, in the same order, as one
+block per repetition.
+
+```python
+print(re.findall(r"[ab]+", "aabba"))
+print(re.findall(r"(?:ab)+", "ababab xyz"))
+
+# ['aabba']
+# ['ababab']
+```
+
+`|` behaves just as differently. Inside `[]` it is a **literal** pipe
+character, not alternation — a frequent trap. True alternation between
+options (single- or multi-character) needs `()` or `(?:...)`.
+
+```python
+print(re.findall(r"[a|b]", "a|b"))
+print(re.findall(r"(a|b)", "a|b"))
+
+# ['a', '|', 'b']
+# ['a', 'b']
+```
+
+`[a|b]` is a class of three literal characters — `a`, `|`, and `b` — so it
+matches all three, including the pipe itself. `(a|b)` is a real alternation,
+so it matches `a` or `b` and skips the pipe.
+
+### 5.3 What gets recorded
+
+`[]` never captures anything by itself — it only restricts what a single
+position may contain, and the class is not addressable with `.group()` or
+`\N`. `()` captures by default (Section 2), so its matched text can be
+retrieved afterward or reused later in the same pattern with a
+backreference (Section 4) — unless it is written as the non-capturing
+`(?:...)` (Section 3.1), which groups without recording anything either.
+
+### 5.4 Escaping rules differ
+
+Inside `[]` (Section 1.4), most regex metacharacters — `.`, `*`, `+`, `?`,
+`(`, `)`, `|` — become literal; only `]`, `\`, a leading `^`, and a
+mid-range `-` keep special meaning. Inside `()`, nothing changes: the
+grouped content keeps its normal regex meaning, because parentheses only
+add scope, they do not turn off metacharacters.
+
+```python
+print(re.findall(r"[.*]", "3.5*2"))
+print(re.fullmatch(r"(a.c)", "abc"))
+
+# ['.', '*']
+# <re.Match object; span=(0, 3), match='abc'>
+```
+
+`[.*]` treats `.` and `*` as the two literal characters they represent.
+`(a.c)` still treats `.` as "any character," matching `"abc"`, because
+grouping never disables what is inside it.
+
+### 5.5 Typical applications
+
+| Construct | Typical use | Example |
+|---|---|---|
+| `[]` | allowed or forbidden character sets | `[0-9]`, `[^\s]`, `[A-Za-z_]` |
+| `[]` | one fixed-alphabet token, repeated with a quantifier | `[0-9A-Fa-f]{4}` |
+| `()` | scoping a quantifier over several characters | `(?:ha){2,}` |
+| `()` | alternation among single- or multi-character options | `(Monday\|Tuesday\|Wednesday)` |
+| `()` | capturing text for later use, by number or name | `([-:])...\1`, `(?P<year>\d{4})` |
+
+### Side-by-side summary
+
+| | `[...]` character class | `(...)` group |
+|---|---|---|
+| Matches | exactly one character | a sequence of zero or more characters, as a unit |
+| Does order inside matter? | No — `[abc]` = `[cba]` | Yes — `(ab)` ≠ `(ba)` |
+| Captures by default? | No, never | Yes, unless written `(?:...)` |
+| Meaning of `\|` inside | literal pipe | alternation |
+| Quantifier repeats | the class, one char per repetition | the whole enclosed sub-pattern |
+| Most metacharacters inside | literal | keep their normal meaning |
+
+### Exercise 5 — spot the bug
+
+The pattern below was meant to match only the words `cat` or `dog`. It
+compiles without error, but its results are not what the author intended.
+Using the differences above, find the bug and fix it.
+
+```python
+buggy_pattern = re.compile(r"[cat|dog]")
+
+for value in ["cat", "dog", "a", "catdog"]:
+    print(f"{value!r:10} ->", bool(buggy_pattern.fullmatch(value)))
+```
+
+:::{dropdown} Solution
+```python
+fixed_pattern = re.compile(r"cat|dog")
+
+for value in ["cat", "dog", "a", "catdog"]:
+    print(f"{value!r:10} ->", bool(fixed_pattern.fullmatch(value)))
+
+# 'cat'      -> True
+# 'dog'      -> True
+# 'a'        -> False
+# 'catdog'   -> False
+```
+
+`[cat|dog]` is a character class built from the literal characters `c`,
+`a`, `t`, `|`, `d`, `o`, `g` — it matches exactly **one** of them, which is
+why `fullmatch("cat")` and `fullmatch("dog")` both fail (they are
+three-character strings) while `fullmatch("a")` succeeds (a single
+character that happens to be in the set). Removing the brackets restores
+real alternation: `cat|dog` (or `(?:cat|dog)` if it needs to be embedded
+inside a larger pattern) matches either whole word and nothing else.
+
+Buggy version's actual output:
+```
+'cat'      -> False
+'dog'      -> False
+'a'        -> True
+'catdog'   -> False
+```
+:::
+
+## 6. Putting it together: classes + groups + backreferences
 
 **Design an ID validator.** A valid ID is three blocks of four hexadecimal
 characters, separated by either `-` or `:`, where **both** separators in a
